@@ -1,0 +1,60 @@
+.playlist-container {
+  position: absolute;
+  width: 100%;
+  height: 160px;
+  left: 50%;
+  top: 400px;
+  transform: translateX(-50%);
+  transition: 0.5s;
+  opacity: 0;
+  overflow: scroll;
+  font-weight: 500;
+}
+.playlist-container.active {
+  top: 320px;
+  opacity: 1;
+  transition: 1s;
+}
+.playlist-wrapper {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  padding: 0;
+  margin: 0;
+}
+.playlist-wrapper .playlist-wrapper-item {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  list-style: none;
+  font-size: 8px;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+.playlist-wrapper .playlist-wrapper-item.playing {
+  opacity: 1;
+}
+.playlist-wrapper .playlist-wrapper-item p {
+  position: absolute;
+  width: 100%;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.15);
+}
+.playlist-wrapper .playlist-wrapper-item p span {
+  position: absolute;
+  right: 0;
+}
+.playlist-wrapper .playlist-wrapper-item p:nth-child(2) {
+  top: 15px;
+  transition: 1s;
+  opacity: 0;
+  font-size: 5px;
+}
+.playlist-wrapper .playlist-wrapper-item:hover p:nth-child(2) {
+  opacity: 1;
+}
+
+.playlist-container.active .playlist-wrapper {
+  opacity: 1;
+}

@@ -1,0 +1,167 @@
+.playbutton-container {
+  position: absolute;
+  width: 100%;
+  height: 140px;
+  bottom: 0;
+  transition: 1s;
+}
+.playbutton-container.active {
+  height: 110px;
+}
+.playbutton-container .playbutton-whiteBox {
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 10px));
+  background-color: transparent;
+  border-radius: 17.5px;
+}
+
+.playbutton-container .playbutton-whiteBox::after {
+  position: absolute;
+  content: "";
+  width: 120px;
+  height: 30px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 17.5px;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.1);
+  transition: 1s;
+}
+.playbutton-container.active .playbutton-whiteBox::after,
+.playbutton-container.active .playbutton-whiteBox::before {
+  opacity: 0;
+}
+
+.playbutton-container .playbutton-whiteBox::before {
+  position: absolute;
+  content: "";
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: transparent;
+  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
+  transition: 0.7s;
+}
+.playbutton-container .playbutton-whiteBox-arrow {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.playbutton-container .playbutton-whiteBox-arrow img {
+  position: absolute;
+  width: 100%;
+}
+#arrow-left {
+  left: 5px;
+}
+#arrow-right {
+  right: 5px;
+}
+
+.playbutton-container .playbutton-blackBox {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, calc(-50% - 10px));
+  border-radius: 50%;
+  background-color: black;
+  transition: 1s;
+  color: white;
+}
+
+.playbutton-container.active .playbutton-blackBox {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+.playbutton-container .playbutton-blackBox-arrow {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 55%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+}
+
+.playbutton-container .playbutton-blackBox ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+.playbutton-container.active .playbutton-blackBox ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+.playbutton-container.active .playbutton-blackBox-arrow {
+  width: 18px;
+  height: 18px;
+}
+.playbutton-container .playbutton-blackBox-arrow img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.playbutton-container .playbutton-shuffleBox {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translateY(calc(-50% - 10px));
+  left: 15px;
+  border: none;
+  transition: 1s;
+  color: rgba(0, 0, 0, 0.3);
+}
+.playbutton-container .playbutton-listBox {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  transform: translateY(calc(-50% - 10px));
+  right: 15px;
+  border: none;
+  transition: 1s;
+  color: rgba(0, 0, 0, 0.3);
+}
+.playbutton-container .playbutton-shuffleBox:hover,
+.playbutton-container .playbutton-listBox:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
+.playbutton-container.active .playbutton-listBox {
+  color: rgba(0, 0, 0, 1);
+}
+
+.playbutton-container .playbutton-listBox ion-icon,
+.playbutton-container .playbutton-shuffleBox ion-icon {
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: 0.5s;
+}
+
+.playbutton-container:active .playbutton-shuffleBox ion-icon {
+  font-size: 18px;
+}

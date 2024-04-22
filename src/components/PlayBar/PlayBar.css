@@ -1,0 +1,24 @@
+.playbar-container {
+  position: absolute;
+  width: 100%;
+  height: 160px;
+
+  top: 300px;
+  z-index: -1;
+}
+.playbar-container .playbar-time {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  transition: 0.5s;
+}
+.playbar-container.active .playbar-time {
+  opacity: 0;
+}

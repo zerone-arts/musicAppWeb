@@ -1,0 +1,19 @@
+.dynamicisland-container {
+  position: absolute;
+  top: 21px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85px;
+  height: 25px;
+  background-color: black;
+
+  box-sizing: border-box;
+  border-radius: 30px;
+}
+#dynamicislandLensImg {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 15px;
+}
