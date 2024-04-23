@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Iphone.css";
 import List from "../../types/list";
 import iPhoneBg from "../../assets/img/iPhone.png";
@@ -17,6 +17,8 @@ import numberonefanBgImg from "../../assets/img/numberonefanBg.png";
 import PlayBar from "../PlayBar/PlayBar";
 import PlayButton from "../PlayButton/PlayButton";
 import PlayList from "../PlayList/PlayList";
+import ReactPlayer from "react-player";
+import HideMusic from "../HideMusic/HideMusic";
 
 interface Props {
   setAppBg: React.Dispatch<React.SetStateAction<string>>;
@@ -77,19 +79,14 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   ]);
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
-  const [testList, setTestList] = useState<[number, number, number, number]>([
-    1, 2, 3, 4,
-  ]);
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
   };
 
   const listSuffleHandle = () => {
-    console.log("섞어 !");
     let suffleList = list.sort(() => Math.random() - 0.5);
     setList([...suffleList]);
-    console.log(list);
   };
 
   const playNextHandle = () => {
@@ -120,7 +117,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       <div className="iphone-wrapper">
         <MusicImage list={list[listCount]} listToggle={listToggle} />
         <PlayList listToggle={listToggle} list={list} listCount={listCount} />
-        <PlayBar listToggle={listToggle} />
+        <PlayBar listToggle={listToggle} list={list} listCount={listCount} />
         <PlayButton
           listToggleHandle={listToggleHandle}
           listSuffleHandle={listSuffleHandle}
@@ -130,6 +127,8 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       </div>
 
       <Dynamicisland />
+
+      <HideMusic list={list} listCount={listCount} />
     </div>
   );
 }

@@ -16,6 +16,7 @@ import numberonefanBgImg from "../../assets/img/numberonefanBg.png";
 import PlayBar from "../PlayBar/PlayBar";
 import PlayButton from "../PlayButton/PlayButton";
 import PlayList from "../PlayList/PlayList";
+import HideMusic from "../HideMusic/HideMusic";
 function Iphone({ setAppBg }) {
     const [list, setList] = useState([
         {
@@ -71,17 +72,12 @@ function Iphone({ setAppBg }) {
     ]);
     const [listCount, setListCount] = useState(0);
     const [listToggle, setListToggle] = useState("");
-    const [testList, setTestList] = useState([
-        1, 2, 3, 4,
-    ]);
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
     const listSuffleHandle = () => {
-        console.log("섞어 !");
         let suffleList = list.sort(() => Math.random() - 0.5);
         setList([...suffleList]);
-        console.log(list);
     };
     const playNextHandle = () => {
         if (listCount + 1 === list.length) {
@@ -109,8 +105,9 @@ function Iphone({ setAppBg }) {
         React.createElement("div", { className: "iphone-wrapper" },
             React.createElement(MusicImage, { list: list[listCount], listToggle: listToggle }),
             React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
-            React.createElement(PlayBar, { listToggle: listToggle }),
+            React.createElement(PlayBar, { listToggle: listToggle, list: list, listCount: listCount }),
             React.createElement(PlayButton, { listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playNextHandle: playNextHandle, playPrevHandle: playPrevHandle })),
-        React.createElement(Dynamicisland, null)));
+        React.createElement(Dynamicisland, null),
+        React.createElement(HideMusic, { list: list, listCount: listCount })));
 }
 export default Iphone;

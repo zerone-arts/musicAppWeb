@@ -5,6 +5,7 @@
 
   top: 300px;
   z-index: -1;
+  border: 1px solid red;
 }
 .playbar-container .playbar-time {
   position: absolute;

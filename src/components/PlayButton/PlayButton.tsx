@@ -35,7 +35,6 @@ function PlayButton({
     }
   };
 
-  console.log(listToggle);
   return (
     <div className={`playbutton-container ${listToggle}`}>
       <div className="playbutton-whiteBox">

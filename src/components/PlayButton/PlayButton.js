@@ -24,7 +24,6 @@ function PlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNe
             setPlayToggle("stop");
         }
     };
-    console.log(listToggle);
     return (React.createElement("div", { className: `playbutton-container ${listToggle}` },
         React.createElement("div", { className: "playbutton-whiteBox" },
             React.createElement("div", { className: "playbutton-whiteBox-arrow", id: "arrow-left", onClick: () => {

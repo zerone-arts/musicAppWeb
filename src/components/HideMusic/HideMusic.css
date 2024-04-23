@@ -1,0 +1,18 @@
+.hidemusic-container {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 1px solid red;
+}
+.test {
+  position: relative;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.test div {
+  position: absolute;
+
+  opacity: 0.5;
+}
