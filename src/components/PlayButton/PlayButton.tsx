@@ -8,12 +8,14 @@ interface Props {
   listSuffleHandle: () => void;
   playPrevHandle: () => void;
   playNextHandle: () => void;
+  playingMusicHandle: (play: boolean) => void;
 }
 function PlayButton({
   listToggleHandle,
   listSuffleHandle,
   playPrevHandle,
   playNextHandle,
+  playingMusicHandle,
 }: Props): JSX.Element {
   const [listToggle, setListToggle] = useState<string>("");
   const [playToggle, setPlayToggle] = useState<string>("stop");
@@ -30,8 +32,10 @@ function PlayButton({
   const playHandle = () => {
     if (playToggle === "stop") {
       setPlayToggle("play");
+      playingMusicHandle(true);
     } else {
       setPlayToggle("stop");
+      playingMusicHandle(false);
     }
   };
 
@@ -70,6 +74,7 @@ function PlayButton({
         className="playbutton-shuffleBox"
         onClick={() => {
           listSuffleHandle();
+          console.log("---------");
         }}
       >
         <ion-icon name="shuffle-outline"></ion-icon>

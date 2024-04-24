@@ -3,7 +3,7 @@ import "./PlayButton.css";
 import arrow from "../../assets/icon/arrow.png";
 import arrowLeft from "../../assets/icon/arrow-left.png";
 import arrowRight from "../../assets/icon/arrow-right.png";
-function PlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNextHandle, }) {
+function PlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNextHandle, playingMusicHandle, }) {
     const [listToggle, setListToggle] = useState("");
     const [playToggle, setPlayToggle] = useState("stop");
     const listHandle = () => {
@@ -19,9 +19,11 @@ function PlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNe
     const playHandle = () => {
         if (playToggle === "stop") {
             setPlayToggle("play");
+            playingMusicHandle(true);
         }
         else {
             setPlayToggle("stop");
+            playingMusicHandle(false);
         }
     };
     return (React.createElement("div", { className: `playbutton-container ${listToggle}` },
@@ -38,6 +40,7 @@ function PlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNe
             React.createElement("div", { className: "playbutton-blackBox-arrow" }, playToggle === "stop" ? (React.createElement("img", { src: arrow, alt: "arrow" })) : (React.createElement("ion-icon", { name: "pause-outline" })))),
         React.createElement("button", { className: "playbutton-shuffleBox", onClick: () => {
                 listSuffleHandle();
+                console.log("---------");
             } },
             React.createElement("ion-icon", { name: "shuffle-outline" })),
         React.createElement("button", { className: "playbutton-listBox ${listToggle}", onClick: listHandle },

@@ -79,6 +79,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   ]);
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
+  const [playing, setPlaying] = useState<boolean>(false);
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
@@ -105,6 +106,18 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     }
   };
 
+  const getTimeHandle = (timeGetList: List[]) => {
+    setList([...timeGetList]);
+  };
+
+  const playingMusicHandle = (play: boolean) => {
+    setPlaying(play);
+  };
+
+  const playNextMusicHandle = () => {
+    playPrevHandle();
+  };
+
   useEffect(() => {
     const randomNum = Math.floor(Math.random() * list.length);
     setListCount(randomNum);
@@ -117,18 +130,29 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       <div className="iphone-wrapper">
         <MusicImage list={list[listCount]} listToggle={listToggle} />
         <PlayList listToggle={listToggle} list={list} listCount={listCount} />
-        <PlayBar listToggle={listToggle} list={list} listCount={listCount} />
+        <PlayBar
+          listToggle={listToggle}
+          list={list}
+          listCount={listCount}
+          playing={playing}
+          playNextMusicHandle={playNextMusicHandle}
+        />
         <PlayButton
           listToggleHandle={listToggleHandle}
           listSuffleHandle={listSuffleHandle}
           playNextHandle={playNextHandle}
           playPrevHandle={playPrevHandle}
+          playingMusicHandle={playingMusicHandle}
         />
       </div>
 
       <Dynamicisland />
 
-      <HideMusic list={list} listCount={listCount} />
+      <HideMusic
+        list={list}
+        listCount={listCount}
+        getTimeHandle={getTimeHandle}
+      />
     </div>
   );
 }

@@ -7,4 +7,5 @@ export default interface List {
   backgroundImg: string;
   titleColor?: string;
   singerColor?: string;
+  time?: string;
 }

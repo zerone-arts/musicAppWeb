@@ -6,7 +6,7 @@ function PlayList({ listToggle, list, listCount }) {
             return (React.createElement("li", { key: item.id, className: `playlist-wrapper-item ${listCount === idx ? "playing" : ""}` },
                 React.createElement("p", null,
                     item.title,
-                    React.createElement("span", null, "3:25")),
+                    React.createElement("span", null, item.time)),
                 React.createElement("p", null, item.singer)));
         }))));
 }

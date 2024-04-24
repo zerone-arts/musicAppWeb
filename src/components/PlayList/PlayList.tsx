@@ -21,7 +21,7 @@ function PlayList({ listToggle, list, listCount }: Props): JSX.Element {
             >
               <p>
                 {item.title}
-                <span>3:25</span>
+                <span>{item.time}</span>
               </p>
               <p>{item.singer}</p>
             </li>

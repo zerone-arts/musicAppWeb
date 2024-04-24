@@ -72,6 +72,7 @@ function Iphone({ setAppBg }) {
     ]);
     const [listCount, setListCount] = useState(0);
     const [listToggle, setListToggle] = useState("");
+    const [playing, setPlaying] = useState(false);
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
@@ -95,6 +96,15 @@ function Iphone({ setAppBg }) {
             setListCount(listCount - 1);
         }
     };
+    const getTimeHandle = (timeGetList) => {
+        setList([...timeGetList]);
+    };
+    const playingMusicHandle = (play) => {
+        setPlaying(play);
+    };
+    const playNextMusicHandle = () => {
+        playPrevHandle();
+    };
     useEffect(() => {
         const randomNum = Math.floor(Math.random() * list.length);
         setListCount(randomNum);
@@ -105,9 +115,9 @@ function Iphone({ setAppBg }) {
         React.createElement("div", { className: "iphone-wrapper" },
             React.createElement(MusicImage, { list: list[listCount], listToggle: listToggle }),
             React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
-            React.createElement(PlayBar, { listToggle: listToggle, list: list, listCount: listCount }),
-            React.createElement(PlayButton, { listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playNextHandle: playNextHandle, playPrevHandle: playPrevHandle })),
+            React.createElement(PlayBar, { listToggle: listToggle, list: list, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle }),
+            React.createElement(PlayButton, { listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playNextHandle: playNextHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle })),
         React.createElement(Dynamicisland, null),
-        React.createElement(HideMusic, { list: list, listCount: listCount })));
+        React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));
 }
 export default Iphone;
