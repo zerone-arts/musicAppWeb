@@ -1,7 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./PlayBar.css";
 import ReactPlayer from "react-player";
 import List from "../../types/list";
+import CircularSlider from "react-circular-slider-svg";
 
 interface Props {
   listToggle: string;
@@ -18,12 +19,28 @@ function PlayBar({
   playNextMusicHandle,
 }: Props): JSX.Element {
   const [played, setPlayed] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
+  const [time, setTime] = useState<string>("0:00");
   const playerRef = useRef<ReactPlayer | null>(null);
 
-  console.log(played);
+  const circularSliderValue = (v: number) => {
+    setPlayed(v * 0.01);
+    playerRef.current!.seekTo(v * 0.01);
+  };
+
+  useEffect(() => {
+    let timeGet: string, min: string | number, sec: string | number;
+    let playedDuration = Math.floor(played * duration);
+    min = parseInt(`${playedDuration / 60}`);
+    sec = playedDuration % 60;
+    timeGet = `${min}:${sec < 10 ? `0${sec}` : sec}`;
+
+    setTime(timeGet);
+  }, [played]);
+
   return (
     <div className={`playbar-container ${listToggle}`}>
-      <div className="playbar-time">01:20</div>
+      <div className="playbar-time">{time}</div>
       <div className="playbar-hidemusic">
         <ReactPlayer
           width={200}
@@ -31,7 +48,9 @@ function PlayBar({
           url={list[listCount].url}
           onEnded={playNextMusicHandle}
           playing={playing}
+          volume={0.5}
           onProgress={({ played }) => setPlayed(played)}
+          onDuration={(duration) => setDuration(duration)}
           ref={playerRef}
         />
       </div>
@@ -47,10 +66,25 @@ function PlayBar({
           playerRef.current!.seekTo(parseFloat(e.target.value)); // 실제 영상 재생 위치 실시간 변경
         }}
       /> */}
-      <div className="playbar-bar">
-        <div className="playbar-bar-background">
-          <div className="testtest"></div>
-        </div>
+      <div className="playbar-halfBar-container">
+        <CircularSlider
+          size={270}
+          minValue={0}
+          maxValue={100}
+          startAngle={110}
+          endAngle={250}
+          angleType={{
+            direction: "cw",
+            axis: "-y",
+          }}
+          handle1={{
+            value: played * 100,
+
+            onChange: (v) => circularSliderValue(v),
+          }}
+          arcColor="black"
+          arcBackgroundColor="#CECECE"
+        />
       </div>
     </div>
   );
