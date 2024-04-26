@@ -109,7 +109,7 @@ function Iphone({ setAppBg }) {
         const randomNum = Math.floor(Math.random() * list.length);
         setListCount(randomNum);
         setAppBg(list[randomNum].backgroundImg);
-    }, []);
+    }, [listCount]);
     return (React.createElement("div", { className: "iphone-container" },
         React.createElement("img", { className: "iPhoneBg", src: iPhoneBg, alt: "iPhone" }),
         React.createElement("div", { className: "iphone-wrapper" },
@@ -117,7 +117,7 @@ function Iphone({ setAppBg }) {
             React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
             React.createElement(PlayBar, { listToggle: listToggle, list: list, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle }),
             React.createElement(PlayButton, { listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playNextHandle: playNextHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle })),
-        React.createElement(Dynamicisland, null),
+        React.createElement(Dynamicisland, { playing: playing }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));
 }
 export default Iphone;

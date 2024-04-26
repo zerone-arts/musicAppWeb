@@ -30,6 +30,26 @@
   width: 100%;
 }
 
+.musicImage-titleWidth {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 40px;
+  border: 1px solid white;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.musicImage-titleWidth span {
+  position: absolute;
+  color: white;
+  font-family: "poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid white;
+}
+
 .musicimage-titleBox {
   position: absolute;
   font-family: "poppins", sans-serif;
@@ -42,17 +62,33 @@
   font-weight: 700;
   width: 100%;
   height: 20px;
-}
-
-.musicimage-titleBox div {
-  position: absolute;
-  width: 100%;
-  margin-right: 20px;
-  list-style: none;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.musicimage-titleBox .musicimage-titleBox-title {
+  position: absolute;
+  width: auto;
+  list-style: none;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+.musicimage-titleBox .musicimage-titleBox-title.over {
+  animation: textAnimate 5s linear infinite;
+}
+
+.musicimage-titleBox .musicimage-titleBox-title.over span {
+  padding-right: 20px;
+}
+
+@keyframes textAnimate {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
 }
 .musicimage-singerBox {
   position: absolute;

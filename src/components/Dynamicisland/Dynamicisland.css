@@ -17,3 +17,76 @@
   transform: translateY(-50%);
   width: 15px;
 }
+
+.dynamicisland-play {
+  position: absolute;
+  top: 50%;
+  left: 8px;
+  transform: translateY(-50%);
+  width: 7px;
+  height: 7px;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.dynamicisland-play div {
+  width: 1px;
+  background-color: white;
+  border-radius: 0.5px;
+  position: relative;
+  transition: 0.5s;
+}
+.dynamicisland-play div:nth-child(1) {
+  height: 3px;
+}
+.dynamicisland-play div:nth-child(2) {
+  height: 7px;
+}
+.dynamicisland-play div:nth-child(3) {
+  height: 5px;
+}
+.dynamicisland-play.play div:nth-child(1) {
+  animation: playAnimate1 1s linear infinite;
+}
+.dynamicisland-play.play div:nth-child(2) {
+  animation: playAnimate2 1.2s linear infinite;
+}
+.dynamicisland-play.play div:nth-child(3) {
+  animation: playAnimate3 1.4s linear infinite;
+}
+
+@keyframes playAnimate1 {
+  0% {
+    height: 3px;
+  }
+  50% {
+    height: 7px;
+  }
+  100% {
+    height: 3px;
+  }
+}
+@keyframes playAnimate2 {
+  0% {
+    height: 7px;
+  }
+  50% {
+    height: 2px;
+  }
+  100% {
+    height: 7px;
+  }
+}
+@keyframes playAnimate3 {
+  0% {
+    height: 5px;
+  }
+  50% {
+    height: 7px;
+  }
+  100% {
+    height: 4px;
+  }
+}

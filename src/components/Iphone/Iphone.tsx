@@ -122,7 +122,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     const randomNum = Math.floor(Math.random() * list.length);
     setListCount(randomNum);
     setAppBg(list[randomNum].backgroundImg);
-  }, []);
+  }, [listCount]);
 
   return (
     <div className="iphone-container">
@@ -146,7 +146,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
         />
       </div>
 
-      <Dynamicisland />
+      <Dynamicisland playing={playing} />
 
       <HideMusic
         list={list}
