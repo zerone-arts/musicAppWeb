@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .iphone-container {
   width: 300px;
   height: 615px;
@@ -18,16 +23,56 @@
   filter: drop-shadow(5px 5px 8px rgba(0, 0, 0, 0.7));
 }
 
-.iphone-wrapper {
+.iphone-container::after {
+  z-index: 999;
   position: absolute;
-  width: 273px;
-  height: 590px;
+  content: "";
+  width: 270px;
+  height: 593px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgb(239, 239, 239);
+  border: 2px solid black;
+  border-radius: 40px;
+  pointer-events: none;
+  transition: 0.5s;
+  opacity: 0;
+}
+.iphone-container.menuActive::after {
+  opacity: 1;
+}
+
+.iphone-wrapper {
+  position: absolute;
+  width: 273px;
+  height: 593px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
   border-radius: 40px;
   overflow: hidden;
+}
+
+.iphone-wrapper-lists {
+  position: absolute;
+  width: 850px;
+  height: 590px;
+
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: start;
+  flex-direction: row;
+
+  opacity: 1;
+}
+.iphone-wrapper-lists-list {
+  position: relative;
+  width: 33%;
+  height: 100%;
+  background-color: rgb(239, 239, 239);
+  border-radius: 40px;
 }
 .hideMusicList-container {
   position: absolute;

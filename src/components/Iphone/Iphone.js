@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Iphone.css";
 import iPhoneBg from "../../assets/img/iPhone.png";
 import Dynamicisland from "../Dynamicisland/Dynamicisland";
-import MusicImage from "../MusicImage/MusicImage";
 import cyberpunkImg from "../../assets/img/cyberpunk2.png";
 import cyberpunkBgImg from "../../assets/img/cyberpunkBg.jpeg";
 import spiderImg from "../../assets/img/spider.png";
@@ -13,10 +12,11 @@ import tenthousandImg from "../../assets/img/10000.png";
 import tenthousandBgImg from "../../assets/img/10000Bg.png";
 import numberonefanImg from "../../assets/img/numberonefan.png";
 import numberonefanBgImg from "../../assets/img/numberonefanBg.png";
-import PlayBar from "../PlayBar/PlayBar";
-import PlayButton from "../PlayButton/PlayButton";
 import PlayList from "../PlayList/PlayList";
 import HideMusic from "../HideMusic/HideMusic";
+import RoundTheme from "../RoundTheme/RoundTheme";
+import CircleTheme from "../CircleTheme/CircleTheme";
+import Menu from "../Menu/Menu";
 function Iphone({ setAppBg }) {
     const [list, setList] = useState([
         {
@@ -73,6 +73,13 @@ function Iphone({ setAppBg }) {
     const [listCount, setListCount] = useState(0);
     const [listToggle, setListToggle] = useState("");
     const [playing, setPlaying] = useState(false);
+    const [themeCount, setThemeCount] = useState(0);
+    const [themeArr, setThemeArr] = useState([
+        "round",
+        "circle",
+        "imsy",
+    ]);
+    const [themeSelect, setThemeSelect] = useState("");
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
@@ -105,19 +112,29 @@ function Iphone({ setAppBg }) {
     const playNextMusicHandle = () => {
         playPrevHandle();
     };
+    const themeSelectHandle = () => {
+        themeSelect === "" ? setThemeSelect("menuActive") : setThemeSelect("");
+    };
     useEffect(() => {
         const randomNum = Math.floor(Math.random() * list.length);
         setListCount(randomNum);
         setAppBg(list[randomNum].backgroundImg);
     }, [listCount]);
-    return (React.createElement("div", { className: "iphone-container" },
+    console.log(themeSelect);
+    return (React.createElement("div", { className: `iphone-container ${themeSelect}` },
         React.createElement("img", { className: "iPhoneBg", src: iPhoneBg, alt: "iPhone" }),
         React.createElement("div", { className: "iphone-wrapper" },
-            React.createElement(MusicImage, { list: list[listCount], listToggle: listToggle }),
-            React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
-            React.createElement(PlayBar, { listToggle: listToggle, list: list, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle }),
-            React.createElement(PlayButton, { listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playNextHandle: playNextHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle })),
+            React.createElement("ul", { className: "iphone-wrapper-lists", style: themeSelect === "menuActive"
+                    ? { pointerEvents: "none" }
+                    : { pointerEvents: "all" } },
+                React.createElement("li", { className: "iphone-wrapper-lists-list" },
+                    React.createElement(RoundTheme, { list: list, listToggle: listToggle, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, themeSelectHandle: themeSelectHandle })),
+                React.createElement("li", { className: "iphone-wrapper-lists-list" },
+                    React.createElement(CircleTheme, null)),
+                React.createElement("li", { className: "iphone-wrapper-lists-list" })),
+            React.createElement(Menu, { themeSelect: themeSelect, theme: themeArr[themeCount], themeSelectHandle: themeSelectHandle })),
         React.createElement(Dynamicisland, { playing: playing }),
+        React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));
 }
 export default Iphone;

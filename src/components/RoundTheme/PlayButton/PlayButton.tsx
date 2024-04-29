@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "./PlayButton.css";
-import arrow from "../../assets/icon/arrow.png";
-import arrowLeft from "../../assets/icon/arrow-left.png";
-import arrowRight from "../../assets/icon/arrow-right.png";
+import arrow from "../../../assets/icon/arrow.png";
+import arrowLeft from "../../../assets/icon/arrow-left.png";
+import arrowRight from "../../../assets/icon/arrow-right.png";
 interface Props {
   listToggleHandle: (value: string) => void;
   listSuffleHandle: () => void;

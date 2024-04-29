@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import List from "../../types/list";
+import List from "../../../types/list";
 import "./MusicImage.css";
 interface Props {
   list: List;

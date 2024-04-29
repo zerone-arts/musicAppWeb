@@ -1,0 +1,45 @@
+.menu-container {
+  position: absolute;
+  z-index: 100;
+  width: 273px;
+  height: 593px;
+  left: 50%;
+  transform: translate(-50%, 593px);
+  opacity: 0.9;
+  border-radius: 25px;
+  transition: 0.5s;
+}
+
+.menu-container.menuActive {
+  opacity: 0.9;
+  transform: translate(-50%, 250px);
+}
+.menu-container.round {
+  background-color: black;
+}
+
+.closeMenuBtn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 15px;
+  width: 60px;
+  height: 4px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: white;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.menu-container:active .closeMenuBtn {
+  opacity: 0.9;
+  transition: 0.2s;
+}
+
+.closeMenuBtn:hover {
+  opacity: 0.6;
+}

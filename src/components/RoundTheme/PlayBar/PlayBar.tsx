@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./PlayBar.css";
 import ReactPlayer from "react-player";
-import List from "../../types/list";
+import List from "../../../types/list";
 import CircularSlider from "react-circular-slider-svg";
 
 interface Props {

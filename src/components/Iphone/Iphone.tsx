@@ -3,7 +3,7 @@ import "./Iphone.css";
 import List from "../../types/list";
 import iPhoneBg from "../../assets/img/iPhone.png";
 import Dynamicisland from "../Dynamicisland/Dynamicisland";
-import MusicImage from "../MusicImage/MusicImage";
+import MusicImage from "../RoundTheme/MusicImage/MusicImage";
 import cyberpunkImg from "../../assets/img/cyberpunk2.png";
 import cyberpunkBgImg from "../../assets/img/cyberpunkBg.jpeg";
 import spiderImg from "../../assets/img/spider.png";
@@ -14,11 +14,14 @@ import tenthousandImg from "../../assets/img/10000.png";
 import tenthousandBgImg from "../../assets/img/10000Bg.png";
 import numberonefanImg from "../../assets/img/numberonefan.png";
 import numberonefanBgImg from "../../assets/img/numberonefanBg.png";
-import PlayBar from "../PlayBar/PlayBar";
-import PlayButton from "../PlayButton/PlayButton";
+import PlayBar from "../RoundTheme/PlayBar/PlayBar";
+import PlayButton from "../RoundTheme/PlayButton/PlayButton";
 import PlayList from "../PlayList/PlayList";
 import ReactPlayer from "react-player";
 import HideMusic from "../HideMusic/HideMusic";
+import RoundTheme from "../RoundTheme/RoundTheme";
+import CircleTheme from "../CircleTheme/CircleTheme";
+import Menu from "../Menu/Menu";
 
 interface Props {
   setAppBg: React.Dispatch<React.SetStateAction<string>>;
@@ -80,16 +83,21 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
   const [playing, setPlaying] = useState<boolean>(false);
+  const [themeCount, setThemeCount] = useState<number>(0);
+  const [themeArr, setThemeArr] = useState<string[]>([
+    "round",
+    "circle",
+    "imsy",
+  ]);
+  const [themeSelect, setThemeSelect] = useState<string>("");
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
   };
-
   const listSuffleHandle = () => {
     let suffleList = list.sort(() => Math.random() - 0.5);
     setList([...suffleList]);
   };
-
   const playNextHandle = () => {
     if (listCount + 1 === list.length) {
       setListCount(0);
@@ -97,7 +105,6 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       setListCount(listCount + 1);
     }
   };
-
   const playPrevHandle = () => {
     if (listCount + 1 === 1) {
       setListCount(list.length - 1);
@@ -105,17 +112,17 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       setListCount(listCount - 1);
     }
   };
-
   const getTimeHandle = (timeGetList: List[]) => {
     setList([...timeGetList]);
   };
-
   const playingMusicHandle = (play: boolean) => {
     setPlaying(play);
   };
-
   const playNextMusicHandle = () => {
     playPrevHandle();
+  };
+  const themeSelectHandle = () => {
+    themeSelect === "" ? setThemeSelect("menuActive") : setThemeSelect("");
   };
 
   useEffect(() => {
@@ -124,30 +131,49 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     setAppBg(list[randomNum].backgroundImg);
   }, [listCount]);
 
+  console.log(themeSelect);
+
   return (
-    <div className="iphone-container">
+    <div className={`iphone-container ${themeSelect}`}>
       {<img className="iPhoneBg" src={iPhoneBg} alt="iPhone" />}
       <div className="iphone-wrapper">
-        <MusicImage list={list[listCount]} listToggle={listToggle} />
-        <PlayList listToggle={listToggle} list={list} listCount={listCount} />
-        <PlayBar
-          listToggle={listToggle}
-          list={list}
-          listCount={listCount}
-          playing={playing}
-          playNextMusicHandle={playNextMusicHandle}
-        />
-        <PlayButton
-          listToggleHandle={listToggleHandle}
-          listSuffleHandle={listSuffleHandle}
-          playNextHandle={playNextHandle}
-          playPrevHandle={playPrevHandle}
-          playingMusicHandle={playingMusicHandle}
+        <ul
+          className="iphone-wrapper-lists"
+          style={
+            themeSelect === "menuActive"
+              ? { pointerEvents: "none" }
+              : { pointerEvents: "all" }
+          }
+        >
+          <li className="iphone-wrapper-lists-list">
+            <RoundTheme
+              list={list}
+              listToggle={listToggle}
+              listCount={listCount}
+              playing={playing}
+              playNextMusicHandle={playNextMusicHandle}
+              playNextHandle={playNextHandle}
+              listToggleHandle={listToggleHandle}
+              listSuffleHandle={listSuffleHandle}
+              playPrevHandle={playPrevHandle}
+              playingMusicHandle={playingMusicHandle}
+              themeSelectHandle={themeSelectHandle}
+            />
+          </li>
+          <li className="iphone-wrapper-lists-list">
+            <CircleTheme />
+          </li>
+          <li className="iphone-wrapper-lists-list"></li>
+        </ul>
+        <Menu
+          themeSelect={themeSelect}
+          theme={themeArr[themeCount]}
+          themeSelectHandle={themeSelectHandle}
         />
       </div>
 
       <Dynamicisland playing={playing} />
-
+      <PlayList listToggle={listToggle} list={list} listCount={listCount} />
       <HideMusic
         list={list}
         listCount={listCount}
