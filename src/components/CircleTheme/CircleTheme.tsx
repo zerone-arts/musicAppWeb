@@ -1,6 +1,10 @@
 import React from "react";
 import "./CircleTheme.css";
-function CircleTheme({}): JSX.Element {
+
+interface Props {
+  themeSelectHandle: (count: number) => void;
+}
+function CircleTheme({ themeSelectHandle }: Props): JSX.Element {
   return <div className="circle-container">CircleTheme</div>;
 }
 

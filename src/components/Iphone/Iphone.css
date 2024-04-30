@@ -56,23 +56,57 @@
 
 .iphone-wrapper-lists {
   position: absolute;
-  width: 850px;
+  width: 900px;
   height: 590px;
 
-  top: 0;
-  left: 0;
+  /* border: 1px solid red; */
   display: flex;
-  justify-content: start;
+  justify-content: space-around;
+  align-items: start;
   flex-direction: row;
-
+  /* transform: scale(0.7);
+  transform-origin: 135px; */
   opacity: 1;
+  transition: 0.5s;
+}
+
+.iphone-wrapper-lists.round {
+  left: 0;
+}
+.iphone-wrapper-lists.circle {
+  left: -313.5px;
+}
+.iphone-wrapper-lists.imsy {
+  left: -627px;
+}
+.iphone-wrapper-lists.round.theme {
+  transform: scale(0.7);
+  transform-origin: 132px;
+}
+.iphone-wrapper-lists.circle.theme {
+  transform: scale(0.7);
+  transform-origin: center;
+}
+.iphone-wrapper-lists.imsy.theme {
+  transform: scale(0.7);
+  transform-origin: 762px;
 }
 .iphone-wrapper-lists-list {
-  position: relative;
-  width: 33%;
+  position: absolute;
+  width: 273px;
   height: 100%;
   background-color: rgb(239, 239, 239);
   border-radius: 40px;
+}
+.iphone-wrapper-lists-list:nth-child(1) {
+  left: 0;
+}
+.iphone-wrapper-lists-list:nth-child(2) {
+  left: 50%;
+  transform: translateX(-50%);
+}
+.iphone-wrapper-lists-list:nth-child(3) {
+  right: 0;
 }
 .hideMusicList-container {
   position: absolute;

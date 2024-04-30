@@ -34,7 +34,7 @@ function HideMusic({ list, listCount, getTimeHandle }: Props): JSX.Element {
     <div className="hidemusic-container">
       {list.map((item, idx) => {
         return (
-          <div className="test" key={idx}>
+          <div className="hideMusic" key={idx}>
             <p style={{ fontSize: "20px", color: "white" }}>{time[idx]}</p>
             <ReactPlayer
               className="player"

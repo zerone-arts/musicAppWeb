@@ -18,7 +18,7 @@ function HideMusic({ list, listCount, getTimeHandle }) {
         });
     };
     return (React.createElement("div", { className: "hidemusic-container" }, list.map((item, idx) => {
-        return (React.createElement("div", { className: "test", key: idx },
+        return (React.createElement("div", { className: "hideMusic", key: idx },
             React.createElement("p", { style: { fontSize: "20px", color: "white" } }, time[idx]),
             React.createElement(ReactPlayer, { className: "player", width: "100px", height: "100px", url: item.url, onDuration: (duration) => getTime(duration, item.id) }),
             React.createElement("audio", { src: "" })));

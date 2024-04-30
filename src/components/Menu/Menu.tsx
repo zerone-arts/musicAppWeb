@@ -2,22 +2,29 @@ import React, { MouseEventHandler, useState } from "react";
 import "./Menu.css";
 
 interface Props {
-  themeSelect: string;
+  menuSelect: string;
   theme: string;
-  themeSelectHandle: () => void;
+  menuSelectHandle: () => void;
+  MenuSelectListHandle: (list: string) => void;
 }
 
-function Menu({ themeSelect, theme, themeSelectHandle }: Props): JSX.Element {
+function Menu({
+  menuSelect,
+  theme,
+  menuSelectHandle,
+  MenuSelectListHandle,
+}: Props): JSX.Element {
   const [menuSlideActive, setMenuSlideActive] = useState<boolean>(false);
   const [mouseDownY, setMouseDownY] = useState<number>(0);
   const [mouseSlideY, setMouseSlideY] = useState<number>(0);
+
   const menuSlideHandle: MouseEventHandler = (e) => {
     if (menuSlideActive) {
       if (-100 < mouseDownY - e.clientY && mouseDownY - e.clientY < 50) {
         setMouseSlideY(mouseDownY - e.clientY);
 
         if (-100 < mouseDownY - e.clientY && mouseDownY - e.clientY < -20) {
-          themeSelectHandle();
+          menuSelectHandle();
           setMouseSlideY(0);
           setMenuSlideActive(false);
         }
@@ -30,9 +37,14 @@ function Menu({ themeSelect, theme, themeSelectHandle }: Props): JSX.Element {
     setMouseDownY(e.clientY);
   };
 
+  const menuSelectThemeHandle: MouseEventHandler = () => {
+    menuSelectHandle();
+    MenuSelectListHandle("theme");
+  };
+
   return (
     <div
-      className={`menu-container ${theme} ${themeSelect}`}
+      className={`menu-container ${theme} ${menuSelect}`}
       onMouseDown={MouseDownHandle}
       onMouseUp={() => setMenuSlideActive(false)}
       onMouseMove={menuSlideHandle}
@@ -43,6 +55,11 @@ function Menu({ themeSelect, theme, themeSelectHandle }: Props): JSX.Element {
       }
     >
       <button className="closeMenuBtn"></button>
+      <ul className="menu-listBox">
+        <li className="menu-list">
+          <button onClick={menuSelectThemeHandle}>Theme</button>
+        </li>
+      </ul>
     </div>
   );
 }

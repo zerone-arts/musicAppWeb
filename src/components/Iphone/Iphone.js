@@ -79,7 +79,8 @@ function Iphone({ setAppBg }) {
         "circle",
         "imsy",
     ]);
-    const [themeSelect, setThemeSelect] = useState("");
+    const [menuSelect, setMenuSelect] = useState("");
+    const [menuSelectList, setMenuSelectList] = useState("");
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
@@ -112,27 +113,32 @@ function Iphone({ setAppBg }) {
     const playNextMusicHandle = () => {
         playPrevHandle();
     };
-    const themeSelectHandle = () => {
-        themeSelect === "" ? setThemeSelect("menuActive") : setThemeSelect("");
+    const themeSelectHandle = (count) => {
+        setThemeCount(count);
+    };
+    const menuSelectHandle = () => {
+        menuSelect === "" ? setMenuSelect("menuActive") : setMenuSelect("");
+    };
+    const MenuSelectListHandle = (list) => {
+        setMenuSelectList(list);
     };
     useEffect(() => {
         const randomNum = Math.floor(Math.random() * list.length);
         setListCount(randomNum);
         setAppBg(list[randomNum].backgroundImg);
     }, [listCount]);
-    console.log(themeSelect);
-    return (React.createElement("div", { className: `iphone-container ${themeSelect}` },
+    return (React.createElement("div", { className: `iphone-container ${menuSelect}` },
         React.createElement("img", { className: "iPhoneBg", src: iPhoneBg, alt: "iPhone" }),
         React.createElement("div", { className: "iphone-wrapper" },
-            React.createElement("ul", { className: "iphone-wrapper-lists", style: themeSelect === "menuActive"
+            React.createElement("ul", { className: `iphone-wrapper-lists ${themeArr[themeCount]} ${menuSelectList}`, style: menuSelect === "menuActive"
                     ? { pointerEvents: "none" }
                     : { pointerEvents: "all" } },
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(RoundTheme, { list: list, listToggle: listToggle, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, themeSelectHandle: themeSelectHandle })),
+                    React.createElement(RoundTheme, { list: list, listToggle: listToggle, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(CircleTheme, null)),
+                    React.createElement(CircleTheme, { themeSelectHandle: themeSelectHandle })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" })),
-            React.createElement(Menu, { themeSelect: themeSelect, theme: themeArr[themeCount], themeSelectHandle: themeSelectHandle })),
+            React.createElement(Menu, { menuSelect: menuSelect, theme: themeArr[themeCount], menuSelectHandle: menuSelectHandle, MenuSelectListHandle: MenuSelectListHandle })),
         React.createElement(Dynamicisland, { playing: playing }),
         React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));

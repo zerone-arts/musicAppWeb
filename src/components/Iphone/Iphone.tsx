@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import "./Iphone.css";
 import List from "../../types/list";
 import iPhoneBg from "../../assets/img/iPhone.png";
@@ -89,7 +89,8 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     "circle",
     "imsy",
   ]);
-  const [themeSelect, setThemeSelect] = useState<string>("");
+  const [menuSelect, setMenuSelect] = useState<string>("");
+  const [menuSelectList, setMenuSelectList] = useState<string>("");
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
@@ -121,8 +122,17 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const playNextMusicHandle = () => {
     playPrevHandle();
   };
-  const themeSelectHandle = () => {
-    themeSelect === "" ? setThemeSelect("menuActive") : setThemeSelect("");
+
+  const themeSelectHandle = (count: number) => {
+    setThemeCount(count);
+  };
+
+  const menuSelectHandle = () => {
+    menuSelect === "" ? setMenuSelect("menuActive") : setMenuSelect("");
+  };
+
+  const MenuSelectListHandle = (list: string) => {
+    setMenuSelectList(list);
   };
 
   useEffect(() => {
@@ -131,16 +141,14 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     setAppBg(list[randomNum].backgroundImg);
   }, [listCount]);
 
-  console.log(themeSelect);
-
   return (
-    <div className={`iphone-container ${themeSelect}`}>
+    <div className={`iphone-container ${menuSelect}`}>
       {<img className="iPhoneBg" src={iPhoneBg} alt="iPhone" />}
       <div className="iphone-wrapper">
         <ul
-          className="iphone-wrapper-lists"
+          className={`iphone-wrapper-lists ${themeArr[themeCount]} ${menuSelectList}`}
           style={
-            themeSelect === "menuActive"
+            menuSelect === "menuActive"
               ? { pointerEvents: "none" }
               : { pointerEvents: "all" }
           }
@@ -157,18 +165,19 @@ function Iphone({ setAppBg }: Props): JSX.Element {
               listSuffleHandle={listSuffleHandle}
               playPrevHandle={playPrevHandle}
               playingMusicHandle={playingMusicHandle}
-              themeSelectHandle={themeSelectHandle}
+              menuSelectHandle={menuSelectHandle}
             />
           </li>
           <li className="iphone-wrapper-lists-list">
-            <CircleTheme />
+            <CircleTheme themeSelectHandle={themeSelectHandle} />
           </li>
           <li className="iphone-wrapper-lists-list"></li>
         </ul>
         <Menu
-          themeSelect={themeSelect}
+          menuSelect={menuSelect}
           theme={themeArr[themeCount]}
-          themeSelectHandle={themeSelectHandle}
+          menuSelectHandle={menuSelectHandle}
+          MenuSelectListHandle={MenuSelectListHandle}
         />
       </div>
 

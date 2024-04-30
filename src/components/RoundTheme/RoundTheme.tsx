@@ -15,7 +15,7 @@ interface Props {
   playPrevHandle: () => void;
   playNextHandle: () => void;
   playingMusicHandle: (play: boolean) => void;
-  themeSelectHandle: () => void;
+  menuSelectHandle: () => void;
 }
 function RoundTheme({
   list,
@@ -28,12 +28,12 @@ function RoundTheme({
   playPrevHandle,
   playNextHandle,
   playingMusicHandle,
-  themeSelectHandle,
+  menuSelectHandle,
 }: Props): JSX.Element {
   return (
     <div className="round-container">
-      <button className="themeSelectBtn" onClick={themeSelectHandle}>
-        <div className="themeSelectBtn-icon"></div>
+      <button className="menuSelectBtn" onClick={menuSelectHandle}>
+        <div className="menuSelectBtn-icon"></div>
       </button>
       <MusicImage list={list[listCount]} listToggle={listToggle} />
       <PlayBar
