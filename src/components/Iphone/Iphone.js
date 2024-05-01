@@ -73,7 +73,7 @@ function Iphone({ setAppBg }) {
     const [listCount, setListCount] = useState(0);
     const [listToggle, setListToggle] = useState("");
     const [playing, setPlaying] = useState(false);
-    const [themeCount, setThemeCount] = useState(0);
+    const [themeCount, setThemeCount] = useState(1);
     const [themeArr, setThemeArr] = useState([
         "round",
         "circle",
@@ -81,6 +81,10 @@ function Iphone({ setAppBg }) {
     ]);
     const [menuSelect, setMenuSelect] = useState("");
     const [menuSelectList, setMenuSelectList] = useState("");
+    const [themeSlideActive, setThemeSlideActive] = useState(false);
+    const [mouseDownX, setMouseDownX] = useState(0);
+    const [mouseSlideX, setMouseSlideX] = useState(0);
+    const [mousePrevX, setMousePrevX] = useState(0);
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
@@ -122,6 +126,51 @@ function Iphone({ setAppBg }) {
     const MenuSelectListHandle = (list) => {
         setMenuSelectList(list);
     };
+    const MouseDownHandle = (e) => {
+        setThemeSlideActive(true);
+        setMouseDownX(e.clientX);
+        setMousePrevX(e.clientX);
+    };
+    const mouseUpHandle = (e) => {
+        setThemeSlideActive(false);
+        if (mousePrevX == e.clientX) {
+            setMenuSelectList("");
+        }
+    };
+    const themeSlideHandle = (e) => {
+        let range = 10;
+        if (themeSlideActive) {
+            if (themeCount === 0) {
+                setMouseSlideX(e.clientX - mouseDownX);
+                if (e.clientX - mouseDownX < -range) {
+                    setMouseSlideX(0);
+                    setThemeCount(1);
+                    setThemeSlideActive(false);
+                }
+            }
+            else if (themeCount === 1) {
+                setMouseSlideX(e.clientX - mouseDownX);
+                if (e.clientX - mouseDownX < -range) {
+                    setMouseSlideX(0);
+                    setThemeCount(2);
+                    setThemeSlideActive(false);
+                }
+                else if (e.clientX - mouseDownX > range) {
+                    setMouseSlideX(0);
+                    setThemeCount(0);
+                    setThemeSlideActive(false);
+                }
+            }
+            else if (themeCount === 2) {
+                setMouseSlideX(e.clientX - mouseDownX);
+                if (e.clientX - mouseDownX > range) {
+                    setMouseSlideX(0);
+                    setThemeCount(1);
+                    setThemeSlideActive(false);
+                }
+            }
+        }
+    };
     useEffect(() => {
         const randomNum = Math.floor(Math.random() * list.length);
         setListCount(randomNum);
@@ -131,14 +180,27 @@ function Iphone({ setAppBg }) {
         React.createElement("img", { className: "iPhoneBg", src: iPhoneBg, alt: "iPhone" }),
         React.createElement("div", { className: "iphone-wrapper" },
             React.createElement("ul", { className: `iphone-wrapper-lists ${themeArr[themeCount]} ${menuSelectList}`, style: menuSelect === "menuActive"
-                    ? { pointerEvents: "none" }
-                    : { pointerEvents: "all" } },
+                    ? menuSelectList === "theme"
+                        ? {
+                            pointerEvents: "none",
+                            transform: `scale(0.7) translateX(${mouseSlideX}px)`,
+                        }
+                        : { pointerEvents: "none" }
+                    : menuSelectList === "theme"
+                        ? {
+                            pointerEvents: "all",
+                            transform: `scale(0.7) translateX(${mouseSlideX}px)`,
+                        }
+                        : { pointerEvents: "all" }, onMouseDown: MouseDownHandle, onMouseUp: mouseUpHandle, onMouseMove: themeSlideHandle },
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
                     React.createElement(RoundTheme, { list: list, listToggle: listToggle, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(CircleTheme, { themeSelectHandle: themeSelectHandle })),
+                    React.createElement(CircleTheme, { list: list[listCount], themeSelectHandle: themeSelectHandle })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" })),
-            React.createElement(Menu, { menuSelect: menuSelect, theme: themeArr[themeCount], menuSelectHandle: menuSelectHandle, MenuSelectListHandle: MenuSelectListHandle })),
+            React.createElement(Menu, { menuSelect: menuSelect, theme: themeArr[themeCount], menuSelectHandle: menuSelectHandle, MenuSelectListHandle: MenuSelectListHandle }),
+            React.createElement("div", { className: `theme-guideWrapper ${menuSelectList}` },
+                React.createElement("div", { className: "theme-guide-ball" }),
+                React.createElement("div", { className: "theme-guide-text" }, "Drag and Click"))),
         React.createElement(Dynamicisland, { playing: playing }),
         React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));

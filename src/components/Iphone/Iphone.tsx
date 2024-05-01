@@ -83,7 +83,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
   const [playing, setPlaying] = useState<boolean>(false);
-  const [themeCount, setThemeCount] = useState<number>(0);
+  const [themeCount, setThemeCount] = useState<number>(1);
   const [themeArr, setThemeArr] = useState<string[]>([
     "round",
     "circle",
@@ -91,6 +91,10 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   ]);
   const [menuSelect, setMenuSelect] = useState<string>("");
   const [menuSelectList, setMenuSelectList] = useState<string>("");
+  const [themeSlideActive, setThemeSlideActive] = useState<boolean>(false);
+  const [mouseDownX, setMouseDownX] = useState<number>(0);
+  const [mouseSlideX, setMouseSlideX] = useState<number>(0);
+  const [mousePrevX, setMousePrevX] = useState<number>(0);
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
@@ -135,6 +139,52 @@ function Iphone({ setAppBg }: Props): JSX.Element {
     setMenuSelectList(list);
   };
 
+  const MouseDownHandle: MouseEventHandler = (e) => {
+    setThemeSlideActive(true);
+    setMouseDownX(e.clientX);
+    setMousePrevX(e.clientX);
+  };
+  const mouseUpHandle: MouseEventHandler = (e) => {
+    setThemeSlideActive(false);
+    if (mousePrevX == e.clientX) {
+      setMenuSelectList("");
+    }
+  };
+  const themeSlideHandle: MouseEventHandler = (e) => {
+    let range = 10;
+    if (themeSlideActive) {
+      if (themeCount === 0) {
+        setMouseSlideX(e.clientX - mouseDownX);
+        if (e.clientX - mouseDownX < -range) {
+          setMouseSlideX(0);
+
+          setThemeCount(1);
+          setThemeSlideActive(false);
+        }
+      } else if (themeCount === 1) {
+        setMouseSlideX(e.clientX - mouseDownX);
+        if (e.clientX - mouseDownX < -range) {
+          setMouseSlideX(0);
+
+          setThemeCount(2);
+          setThemeSlideActive(false);
+        } else if (e.clientX - mouseDownX > range) {
+          setMouseSlideX(0);
+
+          setThemeCount(0);
+          setThemeSlideActive(false);
+        }
+      } else if (themeCount === 2) {
+        setMouseSlideX(e.clientX - mouseDownX);
+        if (e.clientX - mouseDownX > range) {
+          setMouseSlideX(0);
+          setThemeCount(1);
+          setThemeSlideActive(false);
+        }
+      }
+    }
+  };
+
   useEffect(() => {
     const randomNum = Math.floor(Math.random() * list.length);
     setListCount(randomNum);
@@ -149,9 +199,22 @@ function Iphone({ setAppBg }: Props): JSX.Element {
           className={`iphone-wrapper-lists ${themeArr[themeCount]} ${menuSelectList}`}
           style={
             menuSelect === "menuActive"
-              ? { pointerEvents: "none" }
+              ? menuSelectList === "theme"
+                ? {
+                    pointerEvents: "none",
+                    transform: `scale(0.7) translateX(${mouseSlideX}px)`,
+                  }
+                : { pointerEvents: "none" }
+              : menuSelectList === "theme"
+              ? {
+                  pointerEvents: "all",
+                  transform: `scale(0.7) translateX(${mouseSlideX}px)`,
+                }
               : { pointerEvents: "all" }
           }
+          onMouseDown={MouseDownHandle}
+          onMouseUp={mouseUpHandle}
+          onMouseMove={themeSlideHandle}
         >
           <li className="iphone-wrapper-lists-list">
             <RoundTheme
@@ -169,7 +232,10 @@ function Iphone({ setAppBg }: Props): JSX.Element {
             />
           </li>
           <li className="iphone-wrapper-lists-list">
-            <CircleTheme themeSelectHandle={themeSelectHandle} />
+            <CircleTheme
+              list={list[listCount]}
+              themeSelectHandle={themeSelectHandle}
+            />
           </li>
           <li className="iphone-wrapper-lists-list"></li>
         </ul>
@@ -179,6 +245,11 @@ function Iphone({ setAppBg }: Props): JSX.Element {
           menuSelectHandle={menuSelectHandle}
           MenuSelectListHandle={MenuSelectListHandle}
         />
+
+        <div className={`theme-guideWrapper ${menuSelectList}`}>
+          <div className="theme-guide-ball"></div>
+          <div className="theme-guide-text">Drag and Click</div>
+        </div>
       </div>
 
       <Dynamicisland playing={playing} />
