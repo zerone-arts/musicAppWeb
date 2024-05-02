@@ -139,34 +139,36 @@ function Iphone({ setAppBg }) {
     };
     const themeSlideHandle = (e) => {
         let range = 10;
-        if (themeSlideActive) {
-            if (themeCount === 0) {
-                setMouseSlideX(e.clientX - mouseDownX);
-                if (e.clientX - mouseDownX < -range) {
-                    setMouseSlideX(0);
-                    setThemeCount(1);
-                    setThemeSlideActive(false);
+        if (menuSelectList === "theme") {
+            if (themeSlideActive) {
+                if (themeCount === 0) {
+                    setMouseSlideX(e.clientX - mouseDownX);
+                    if (e.clientX - mouseDownX < -range) {
+                        setMouseSlideX(0);
+                        setThemeCount(1);
+                        setThemeSlideActive(false);
+                    }
                 }
-            }
-            else if (themeCount === 1) {
-                setMouseSlideX(e.clientX - mouseDownX);
-                if (e.clientX - mouseDownX < -range) {
-                    setMouseSlideX(0);
-                    setThemeCount(2);
-                    setThemeSlideActive(false);
+                else if (themeCount === 1) {
+                    setMouseSlideX(e.clientX - mouseDownX);
+                    if (e.clientX - mouseDownX < -range) {
+                        setMouseSlideX(0);
+                        setThemeCount(2);
+                        setThemeSlideActive(false);
+                    }
+                    else if (e.clientX - mouseDownX > range) {
+                        setMouseSlideX(0);
+                        setThemeCount(0);
+                        setThemeSlideActive(false);
+                    }
                 }
-                else if (e.clientX - mouseDownX > range) {
-                    setMouseSlideX(0);
-                    setThemeCount(0);
-                    setThemeSlideActive(false);
-                }
-            }
-            else if (themeCount === 2) {
-                setMouseSlideX(e.clientX - mouseDownX);
-                if (e.clientX - mouseDownX > range) {
-                    setMouseSlideX(0);
-                    setThemeCount(1);
-                    setThemeSlideActive(false);
+                else if (themeCount === 2) {
+                    setMouseSlideX(e.clientX - mouseDownX);
+                    if (e.clientX - mouseDownX > range) {
+                        setMouseSlideX(0);
+                        setThemeCount(1);
+                        setThemeSlideActive(false);
+                    }
                 }
             }
         }
@@ -193,9 +195,9 @@ function Iphone({ setAppBg }) {
                         }
                         : { pointerEvents: "all" }, onMouseDown: MouseDownHandle, onMouseUp: mouseUpHandle, onMouseMove: themeSlideHandle },
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(RoundTheme, { list: list, listToggle: listToggle, listCount: listCount, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle })),
+                    React.createElement(RoundTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(CircleTheme, { list: list[listCount], themeSelectHandle: themeSelectHandle })),
+                    React.createElement(CircleTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, themeSelectHandle: themeSelectHandle, menuSelectHandle: menuSelectHandle, menuSelectList: menuSelectList })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" })),
             React.createElement(Menu, { menuSelect: menuSelect, theme: themeArr[themeCount], menuSelectHandle: menuSelectHandle, MenuSelectListHandle: MenuSelectListHandle }),
             React.createElement("div", { className: `theme-guideWrapper ${menuSelectList}` },

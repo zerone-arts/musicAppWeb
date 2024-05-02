@@ -152,34 +152,36 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   };
   const themeSlideHandle: MouseEventHandler = (e) => {
     let range = 10;
-    if (themeSlideActive) {
-      if (themeCount === 0) {
-        setMouseSlideX(e.clientX - mouseDownX);
-        if (e.clientX - mouseDownX < -range) {
-          setMouseSlideX(0);
+    if (menuSelectList === "theme") {
+      if (themeSlideActive) {
+        if (themeCount === 0) {
+          setMouseSlideX(e.clientX - mouseDownX);
+          if (e.clientX - mouseDownX < -range) {
+            setMouseSlideX(0);
 
-          setThemeCount(1);
-          setThemeSlideActive(false);
-        }
-      } else if (themeCount === 1) {
-        setMouseSlideX(e.clientX - mouseDownX);
-        if (e.clientX - mouseDownX < -range) {
-          setMouseSlideX(0);
+            setThemeCount(1);
+            setThemeSlideActive(false);
+          }
+        } else if (themeCount === 1) {
+          setMouseSlideX(e.clientX - mouseDownX);
+          if (e.clientX - mouseDownX < -range) {
+            setMouseSlideX(0);
 
-          setThemeCount(2);
-          setThemeSlideActive(false);
-        } else if (e.clientX - mouseDownX > range) {
-          setMouseSlideX(0);
+            setThemeCount(2);
+            setThemeSlideActive(false);
+          } else if (e.clientX - mouseDownX > range) {
+            setMouseSlideX(0);
 
-          setThemeCount(0);
-          setThemeSlideActive(false);
-        }
-      } else if (themeCount === 2) {
-        setMouseSlideX(e.clientX - mouseDownX);
-        if (e.clientX - mouseDownX > range) {
-          setMouseSlideX(0);
-          setThemeCount(1);
-          setThemeSlideActive(false);
+            setThemeCount(0);
+            setThemeSlideActive(false);
+          }
+        } else if (themeCount === 2) {
+          setMouseSlideX(e.clientX - mouseDownX);
+          if (e.clientX - mouseDownX > range) {
+            setMouseSlideX(0);
+            setThemeCount(1);
+            setThemeSlideActive(false);
+          }
         }
       }
     }
@@ -219,8 +221,8 @@ function Iphone({ setAppBg }: Props): JSX.Element {
           <li className="iphone-wrapper-lists-list">
             <RoundTheme
               list={list}
-              listToggle={listToggle}
               listCount={listCount}
+              listToggle={listToggle}
               playing={playing}
               playNextMusicHandle={playNextMusicHandle}
               playNextHandle={playNextHandle}
@@ -233,8 +235,19 @@ function Iphone({ setAppBg }: Props): JSX.Element {
           </li>
           <li className="iphone-wrapper-lists-list">
             <CircleTheme
-              list={list[listCount]}
+              list={list}
+              listCount={listCount}
+              listToggle={listToggle}
+              playing={playing}
+              playNextMusicHandle={playNextMusicHandle}
+              playNextHandle={playNextHandle}
+              listToggleHandle={listToggleHandle}
+              listSuffleHandle={listSuffleHandle}
+              playPrevHandle={playPrevHandle}
+              playingMusicHandle={playingMusicHandle}
               themeSelectHandle={themeSelectHandle}
+              menuSelectHandle={menuSelectHandle}
+              menuSelectList={menuSelectList}
             />
           </li>
           <li className="iphone-wrapper-lists-list"></li>

@@ -6,6 +6,9 @@
   border-radius: 40px;
   overflow: hidden;
 }
+.circle-container.circle {
+  pointer-events: none;
+}
 
 .circle-container.one {
   background: linear-gradient(#8eb8ee, #274265);
@@ -32,20 +35,86 @@
 }
 .circle-listImg {
   position: absolute;
-  width: 200px;
-  height: 200px;
-
+  width: 180px;
+  height: 180px;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 50%;
   overflow: hidden;
+  transition: 1s;
+}
+
+.circle-listImg.active {
+  width: 150px;
+  height: 150px;
+  top: 30%;
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 .circle-listImg img {
   position: absolute;
   width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.circle-menuselectBtn {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  right: 20px;
+  top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  opacity: 1;
+  transition: 0.5s;
+  background-color: transparent;
+  cursor: pointer;
+}
+.circle-menuselectBtn:hover {
+  opacity: 1;
+}
+.circle-menuselectBtn-icon {
+  background-color: white;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+}
+.circle-menuselectBtn-icon::before {
+  background-color: white;
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.circle-menuselectBtn-icon::after {
+  background-color: white;
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.circle-playBar-wrapper {
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid red;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

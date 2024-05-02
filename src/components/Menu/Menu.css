@@ -18,6 +18,9 @@
 .menu-container.round {
   background-color: black;
 }
+.menu-container.circle {
+  background-color: black;
+}
 
 .closeMenuBtn {
   position: absolute;
