@@ -61,6 +61,11 @@
 .circle-playbutton-container .circle-playbutton-whiteBox-arrow img {
   position: absolute;
   width: 100%;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.circle-playbutton-container .circle-playbutton-whiteBox-arrow img:hover {
+  opacity: 1;
 }
 #arrow-left {
   left: 5px;
@@ -148,9 +153,9 @@
   transform: translateY(calc(-50% - 10px));
   left: 15px;
   border: none;
-  transition: 0.5s;
+  transition: 0.2s;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.3);
 }
 .circle-playbutton-container .circle-playbutton-listBox {
   position: absolute;
@@ -160,17 +165,17 @@
   transform: translateY(calc(-50% - 10px));
   right: 15px;
   border: none;
-  transition: 0.5s;
+  transition: 0.2s;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.3);
 }
 .circle-playbutton-container .circle-playbutton-shuffleBox:hover,
 .circle-playbutton-container .circle-playbutton-listBox:hover {
-  color: rgba(255, 255, 255, 1);
+  color: #f1caa5;
 }
 
 .circle-playbutton-container.active .circle-playbutton-listBox {
-  color: rgba(255, 255, 255, 1);
+  color: #f1caa5;
 }
 
 .circle-playbutton-container .circle-playbutton-listBox ion-icon,

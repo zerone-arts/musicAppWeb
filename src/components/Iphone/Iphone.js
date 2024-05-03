@@ -195,16 +195,16 @@ function Iphone({ setAppBg }) {
                         }
                         : { pointerEvents: "all" }, onMouseDown: MouseDownHandle, onMouseUp: mouseUpHandle, onMouseMove: themeSlideHandle },
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(RoundTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle })),
+                    React.createElement(RoundTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, menuSelectHandle: menuSelectHandle, theme: themeArr[themeCount] })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" },
-                    React.createElement(CircleTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, themeSelectHandle: themeSelectHandle, menuSelectHandle: menuSelectHandle, menuSelectList: menuSelectList })),
+                    React.createElement(CircleTheme, { list: list, listCount: listCount, listToggle: listToggle, playing: playing, playNextMusicHandle: playNextMusicHandle, playNextHandle: playNextHandle, listToggleHandle: listToggleHandle, listSuffleHandle: listSuffleHandle, playPrevHandle: playPrevHandle, playingMusicHandle: playingMusicHandle, themeSelectHandle: themeSelectHandle, menuSelectHandle: menuSelectHandle, menuSelectList: menuSelectList, theme: themeArr[themeCount] })),
                 React.createElement("li", { className: "iphone-wrapper-lists-list" })),
             React.createElement(Menu, { menuSelect: menuSelect, theme: themeArr[themeCount], menuSelectHandle: menuSelectHandle, MenuSelectListHandle: MenuSelectListHandle }),
             React.createElement("div", { className: `theme-guideWrapper ${menuSelectList}` },
                 React.createElement("div", { className: "theme-guide-ball" }),
                 React.createElement("div", { className: "theme-guide-text" }, "Drag and Click"))),
         React.createElement(Dynamicisland, { playing: playing }),
-        React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount }),
+        React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount, theme: themeArr[themeCount] }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));
 }
 export default Iphone;

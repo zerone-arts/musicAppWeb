@@ -10,6 +10,8 @@ interface Props {
   listCount: number;
   playing: boolean;
   playNextMusicHandle: () => void;
+  bgGradientArr: string[];
+  theme: string;
 }
 
 function CirclePlayBar({
@@ -18,6 +20,8 @@ function CirclePlayBar({
   listCount,
   playing,
   playNextMusicHandle,
+  bgGradientArr,
+  theme,
 }: Props): JSX.Element {
   const [played, setPlayed] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -39,10 +43,19 @@ function CirclePlayBar({
     setTime(timeGet);
   }, [played]);
   return (
-    <div className={`circle-playbar-container ${listToggle}`}>
+    <div className={`circle-playbar-container ${listToggle} ${bgGradientArr}`}>
       <div className="circle-playbar-time">
-        {time} <span>|</span>
-        {list[listCount].time}
+        <span style={playing ? { opacity: 1 } : { opacity: 0.5 }}> {time}</span>
+        <span style={playing ? { opacity: 1 } : { opacity: 0.5 }}>|</span>
+        <span
+          style={
+            playing
+              ? { color: `#f1caa5`, opacity: 1 }
+              : { color: `#fff`, opacity: 0.5 }
+          }
+        >
+          {list[listCount].time}
+        </span>
       </div>
       <div className="circle-playbar-hidemusic">
         <ReactPlayer
@@ -50,8 +63,8 @@ function CirclePlayBar({
           height={100}
           url={list[listCount].url}
           onEnded={playNextMusicHandle}
-          playing={playing}
-          volume={0.5}
+          playing={theme === "circle" ? playing : false}
+          volume={0.2}
           onProgress={({ played }) => setPlayed(played)}
           onDuration={(duration) => setDuration(duration)}
           ref={playerRef}
@@ -73,7 +86,8 @@ function CirclePlayBar({
 
             onChange: (v) => circularSliderValue(v),
           }}
-          arcColor="black"
+          arcColor="#ddad87"
+          arcBackgroundColor="rgba(255,255,255,0.1)"
         />
       </div>
     </div>

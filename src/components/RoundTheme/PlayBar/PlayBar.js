@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import "./PlayBar.css";
 import ReactPlayer from "react-player";
 import CircularSlider from "react-circular-slider-svg";
-function PlayBar({ listToggle, list, listCount, playing, playNextMusicHandle, }) {
+function PlayBar({ listToggle, list, listCount, playing, playNextMusicHandle, theme, }) {
     const [played, setPlayed] = useState(0);
     const [duration, setDuration] = useState(0);
     const [time, setTime] = useState("0:00");
@@ -22,7 +22,7 @@ function PlayBar({ listToggle, list, listCount, playing, playNextMusicHandle, })
     return (React.createElement("div", { className: `playbar-container ${listToggle}` },
         React.createElement("div", { className: "playbar-time" }, time),
         React.createElement("div", { className: "playbar-hidemusic" },
-            React.createElement(ReactPlayer, { width: 200, height: 100, url: list[listCount].url, onEnded: playNextMusicHandle, playing: playing, volume: 0.5, onProgress: ({ played }) => setPlayed(played), onDuration: (duration) => setDuration(duration), ref: playerRef })),
+            React.createElement(ReactPlayer, { width: 200, height: 100, url: list[listCount].url, onEnded: playNextMusicHandle, playing: theme === "round" ? playing : false, volume: 0.5, onProgress: ({ played }) => setPlayed(played), onDuration: (duration) => setDuration(duration), ref: playerRef })),
         React.createElement("div", { className: "playbar-halfBar-container" },
             React.createElement(CircularSlider, { size: 270, minValue: 0, maxValue: 100, startAngle: 110, endAngle: 250, angleType: {
                     direction: "cw",

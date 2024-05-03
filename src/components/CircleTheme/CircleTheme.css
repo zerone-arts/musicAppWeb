@@ -2,28 +2,38 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to right, #053537 50%, #f84553);
+
   border-radius: 40px;
   overflow: hidden;
+}
+
+.circle-container::after {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  content: "";
+  background: linear-gradient(rgba(255, 255, 255, 0.1) 1%, transparent);
+  pointer-events: none;
 }
 .circle-container.circle {
   pointer-events: none;
 }
 
 .circle-container.one {
-  background: linear-gradient(#8eb8ee, #274265);
+  background: linear-gradient(#002b63, #001531);
 }
 .circle-container.two {
-  background: linear-gradient(to right, #f84553, #7864cf);
+  background: linear-gradient(#7b2c56, #6b0b3e);
 }
 .circle-container.three {
-  background: linear-gradient(#004251, #d688aa);
+  background: linear-gradient(#006d88, #00596f);
 }
 .circle-container.four {
-  background: linear-gradient(#193263, #c10044);
+  background: linear-gradient(#381a5d, #200f35);
 }
 .circle-container.five {
-  background: linear-gradient(to right, #053537 30%, #d20a12);
+  background: linear-gradient(#00474a, #003133);
 }
 
 .circle-container::before {
@@ -38,7 +48,7 @@
   width: 180px;
   height: 180px;
   left: 50%;
-  top: 50%;
+  top: 47%;
   transform: translate(-50%, -50%);
   text-align: center;
   border-radius: 50%;
@@ -59,9 +69,10 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  filter: brightness(80%);
 }
 
-.circle-menuselectBtn {
+.circle-menuSelectBtn {
   position: absolute;
   width: 15px;
   height: 15px;
@@ -75,17 +86,19 @@
   transition: 0.5s;
   background-color: transparent;
   cursor: pointer;
+  pointer-events: all;
+  z-index: 999;
 }
-.circle-menuselectBtn:hover {
+.circle-menuSelectBtn:hover {
   opacity: 1;
 }
-.circle-menuselectBtn-icon {
+.circle-menuSelectBtn-icon {
   background-color: white;
   width: 3px;
   height: 3px;
   border-radius: 50%;
 }
-.circle-menuselectBtn-icon::before {
+.circle-menuSelectBtn-icon::before {
   background-color: white;
   position: absolute;
   content: "";
@@ -97,7 +110,7 @@
   border-radius: 50%;
   cursor: pointer;
 }
-.circle-menuselectBtn-icon::after {
+.circle-menuSelectBtn-icon::after {
   background-color: white;
   position: absolute;
   content: "";
@@ -118,4 +131,99 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+.circle-titleWidth {
+  position: absolute;
+  width: 100%;
+  height: 30px;
+  top: 40px;
+  border: 1px solid white;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.circle-titleWidth span {
+  position: absolute;
+  color: white;
+  font-family: "poppins", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  border: 1px solid white;
+}
+
+.circle-titleBox {
+  position: absolute;
+  font-family: "poppins", sans-serif;
+  font-size: 13px;
+  color: white;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-weight: 700;
+  width: 70%;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: 1s;
+}
+.circle-titleBox.active {
+  top: 65px;
+  font-size: 10px;
+}
+
+.circle-titleBox .circle-titleBox-title {
+  position: absolute;
+  width: auto;
+  list-style: none;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+.circle-titleBox .circle-titleBox-title.over {
+  left: 0;
+  animation: textAnimate 10s linear infinite;
+}
+
+.circle-titleBox .circle-titleBox-title.over span {
+  padding-right: 20px;
+}
+
+@keyframes textAnimate {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-20%);
+  }
+}
+.circle-singerBox {
+  position: absolute;
+  font-family: "poppins", sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.7);
+  top: 152px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  width: 100%;
+  height: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  transition: 1s;
+}
+.circle-singerBox.active {
+  top: 87px;
+  font-size: 5px;
+}
+.circle-singerBox div {
+  position: absolute;
+  width: 100%;
+  margin-right: 20px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

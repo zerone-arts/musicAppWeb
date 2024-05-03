@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CircleTheme.css";
 import List from "../../types/list";
 import Grade from "grade-js";
@@ -11,6 +11,7 @@ interface Props {
   listCount: number;
   playing: boolean;
   menuSelectList: string;
+  theme: string;
   playNextMusicHandle: () => void;
   listToggleHandle: (value: string) => void;
   listSuffleHandle: () => void;
@@ -18,7 +19,6 @@ interface Props {
   playNextHandle: () => void;
   playingMusicHandle: (play: boolean) => void;
   themeSelectHandle: (count: number) => void;
-
   menuSelectHandle: () => void;
 }
 function CircleTheme({
@@ -27,7 +27,6 @@ function CircleTheme({
   listToggle,
   playing,
   playNextMusicHandle,
-  themeSelectHandle,
   listToggleHandle,
   listSuffleHandle,
   playPrevHandle,
@@ -35,10 +34,8 @@ function CircleTheme({
   playingMusicHandle,
   menuSelectHandle,
   menuSelectList,
+  theme,
 }: Props): JSX.Element {
-  const gradientImage = () => {
-    // Grade(document.querySelectorAll(".circle-container"));
-  };
   const [bgGradientArr, setBgGradientArr] = useState<string[]>([
     "one",
     "two",
@@ -46,6 +43,14 @@ function CircleTheme({
     "four",
     "five",
   ]);
+
+  const [titleWidth, setTitleWidth] = useState<number>(0);
+  const titleWidthRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let width = titleWidthRef.current?.getBoundingClientRect().width;
+    if (typeof width === "number") setTitleWidth(width);
+  }, [list[listCount].title]);
 
   return (
     <div
@@ -57,7 +62,6 @@ function CircleTheme({
         <img
           src={list[listCount].img}
           alt="img"
-          onLoad={() => gradientImage()}
           style={
             list[listCount].id == 1
               ? { transform: `translate(-50%, -50%) rotate(90deg)` }
@@ -71,12 +75,33 @@ function CircleTheme({
         <div className="circle-menuSelectBtn-icon"></div>
       </button>
 
+      <div className={`circle-titleBox ${listToggle}`}>
+        <div
+          className={`circle-titleBox-title ${titleWidth >= 200 ? "over" : ""}`}
+        >
+          <span>{list[listCount].title}</span>
+
+          {titleWidth >= 200 ? <span>{list[listCount].title}</span> : ""}
+          {titleWidth >= 200 ? <span>{list[listCount].title}</span> : ""}
+          {titleWidth >= 200 ? <span>{list[listCount].title}</span> : ""}
+          {titleWidth >= 200 ? <span>{list[listCount].title}</span> : ""}
+        </div>
+      </div>
+      <div className={`circle-singerBox ${listToggle}`}>
+        <div>{list[listCount].singer}</div>
+      </div>
+
+      <div className="circle-titleWidth">
+        <span ref={titleWidthRef}>{list[listCount].title}</span>
+      </div>
       <CirclePlayBar
         listToggle={listToggle}
         list={list}
         listCount={listCount}
         playing={playing}
         playNextMusicHandle={playNextMusicHandle}
+        bgGradientArr={bgGradientArr}
+        theme={theme}
       />
 
       <CirclePlayButton

@@ -10,6 +10,7 @@ interface Props {
   listCount: number;
   playing: boolean;
   playNextMusicHandle: () => void;
+  theme: string;
 }
 function PlayBar({
   listToggle,
@@ -17,6 +18,7 @@ function PlayBar({
   listCount,
   playing,
   playNextMusicHandle,
+  theme,
 }: Props): JSX.Element {
   const [played, setPlayed] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
@@ -47,7 +49,7 @@ function PlayBar({
           height={100}
           url={list[listCount].url}
           onEnded={playNextMusicHandle}
-          playing={playing}
+          playing={theme === "round" ? playing : false}
           volume={0.5}
           onProgress={({ played }) => setPlayed(played)}
           onDuration={(duration) => setDuration(duration)}

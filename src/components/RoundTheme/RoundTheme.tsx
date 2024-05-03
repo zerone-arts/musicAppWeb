@@ -16,6 +16,7 @@ interface Props {
   playNextHandle: () => void;
   playingMusicHandle: (play: boolean) => void;
   menuSelectHandle: () => void;
+  theme: string;
 }
 
 function RoundTheme({
@@ -30,6 +31,7 @@ function RoundTheme({
   playNextHandle,
   playingMusicHandle,
   menuSelectHandle,
+  theme,
 }: Props): JSX.Element {
   return (
     <div className="round-container">
@@ -43,6 +45,7 @@ function RoundTheme({
         listCount={listCount}
         playing={playing}
         playNextMusicHandle={playNextMusicHandle}
+        theme={theme}
       />
       <PlayButton
         listToggleHandle={listToggleHandle}

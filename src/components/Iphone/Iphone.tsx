@@ -231,6 +231,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
               playPrevHandle={playPrevHandle}
               playingMusicHandle={playingMusicHandle}
               menuSelectHandle={menuSelectHandle}
+              theme={themeArr[themeCount]}
             />
           </li>
           <li className="iphone-wrapper-lists-list">
@@ -248,6 +249,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
               themeSelectHandle={themeSelectHandle}
               menuSelectHandle={menuSelectHandle}
               menuSelectList={menuSelectList}
+              theme={themeArr[themeCount]}
             />
           </li>
           <li className="iphone-wrapper-lists-list"></li>
@@ -266,7 +268,12 @@ function Iphone({ setAppBg }: Props): JSX.Element {
       </div>
 
       <Dynamicisland playing={playing} />
-      <PlayList listToggle={listToggle} list={list} listCount={listCount} />
+      <PlayList
+        listToggle={listToggle}
+        list={list}
+        listCount={listCount}
+        theme={themeArr[themeCount]}
+      />
       <HideMusic
         list={list}
         listCount={listCount}
