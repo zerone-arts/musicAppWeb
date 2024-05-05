@@ -76,7 +76,7 @@
 .iphone-wrapper-lists.circle {
   left: -313.5px;
 }
-.iphone-wrapper-lists.imsy {
+.iphone-wrapper-lists.record {
   left: -627px;
 }
 .iphone-wrapper-lists.round.theme {
@@ -86,7 +86,7 @@
   transform: scale(0.7);
   transform-origin: center;
 }
-.iphone-wrapper-lists.imsy.theme {
+.iphone-wrapper-lists.record.theme {
   transform: scale(0.7);
   transform-origin: 762px;
 }

@@ -22,6 +22,7 @@ import HideMusic from "../HideMusic/HideMusic";
 import RoundTheme from "../RoundTheme/RoundTheme";
 import CircleTheme from "../CircleTheme/CircleTheme";
 import Menu from "../Menu/Menu";
+import RecordTheme from "../RecordTheme/RecordTheme";
 
 interface Props {
   setAppBg: React.Dispatch<React.SetStateAction<string>>;
@@ -83,11 +84,11 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
   const [playing, setPlaying] = useState<boolean>(false);
-  const [themeCount, setThemeCount] = useState<number>(1);
+  const [themeCount, setThemeCount] = useState<number>(2);
   const [themeArr, setThemeArr] = useState<string[]>([
     "round",
     "circle",
-    "imsy",
+    "record",
   ]);
   const [menuSelect, setMenuSelect] = useState<string>("");
   const [menuSelectList, setMenuSelectList] = useState<string>("");
@@ -252,7 +253,22 @@ function Iphone({ setAppBg }: Props): JSX.Element {
               theme={themeArr[themeCount]}
             />
           </li>
-          <li className="iphone-wrapper-lists-list"></li>
+          <li className="iphone-wrapper-lists-list">
+            <RecordTheme
+              list={list}
+              listCount={listCount}
+              listToggle={listToggle}
+              playing={playing}
+              playNextMusicHandle={playNextMusicHandle}
+              playNextHandle={playNextHandle}
+              listToggleHandle={listToggleHandle}
+              listSuffleHandle={listSuffleHandle}
+              playPrevHandle={playPrevHandle}
+              playingMusicHandle={playingMusicHandle}
+              menuSelectHandle={menuSelectHandle}
+              theme={themeArr[themeCount]}
+            />
+          </li>
         </ul>
         <Menu
           menuSelect={menuSelect}

@@ -1,0 +1,93 @@
+.record-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  overflow: hidden;
+}
+.record-lp-wrapper {
+  position: absolute;
+  left: 0;
+  top: 17%;
+  width: 100%;
+  height: 37%;
+
+  -webkit-box-reflect: below 0
+    linear-gradient(transparent, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2) 50%);
+}
+.record-lp-imgBox {
+  position: absolute;
+  width: 70%;
+  height: 100%;
+  border: 1px solid;
+  overflow: hidden;
+  left: -25%;
+  border: none;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.record-lp-imgBox img {
+  position: absolute;
+  width: 100%;
+  left: 60%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(90%);
+}
+.record-lp-cdBox {
+  position: absolute;
+  width: 215px;
+  height: 215px;
+  left: 45%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: black;
+  border-radius: 50%;
+  overflow: hidden;
+  /* animation: cdAnimate 7s infinite linear; */
+}
+
+@keyframes cdAnimate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.record-lp-cdBox img {
+  width: 101%;
+}
+
+.record-lp-innerImgBox {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1px solid white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.record-lp-innerImgBox img {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: brightness(90%);
+}
+.record-lp-innerImgBox::after {
+  position: absolute;
+  content: "";
+  width: 50%;
+  height: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid white;
+  border-radius: 50%;
+}
