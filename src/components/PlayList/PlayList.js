@@ -3,6 +3,7 @@ import "./PlayList.css";
 import scrollIcon from "../../assets/icon/scoll.png";
 import scrollIconWhite from "../../assets/icon/scroll-white.png";
 function PlayList({ listToggle, list, listCount, theme }) {
+    console.log(theme);
     return (React.createElement("div", { className: `playlist-container ${listToggle} ${theme}` },
         React.createElement("div", { className: "playlist-wrapper" },
             React.createElement("ul", { className: "playlist-box" }, list.map((item, idx) => {

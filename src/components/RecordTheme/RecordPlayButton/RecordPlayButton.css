@@ -10,7 +10,7 @@
 }
 .record-playbutton-container .record-playbutton-whiteBox {
   position: absolute;
-  width: 120px;
+  width: 130px;
   height: 30px;
   left: 50%;
   top: 50%;
@@ -22,7 +22,7 @@
 .record-playbutton-container .record-playbutton-whiteBox::after {
   position: absolute;
   content: "";
-  width: 120px;
+  width: 130px;
   height: 30px;
   left: 50%;
   top: 50%;
@@ -52,8 +52,8 @@
 }
 .record-playbutton-container .record-playbutton-whiteBox-arrow {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   z-index: 1;
   top: 50%;
   transform: translateY(-50%);
@@ -61,7 +61,7 @@
 .record-playbutton-container .record-playbutton-whiteBox-arrow img {
   position: absolute;
   width: 100%;
-  opacity: 0.5;
+  opacity: 1;
   transition: 0.5s;
 }
 .record-playbutton-container .record-playbutton-whiteBox-arrow img:hover {
@@ -82,9 +82,9 @@
   top: 50%;
   transform: translate(-50%, calc(-50% - 10px));
   border-radius: 50%;
-  border: 1px solid white;
+  border: 1.5px solid black;
   transition: 1s;
-  color: white;
+  color: black;
 }
 
 .record-playbutton-container.active .record-playbutton-blackBox {
@@ -99,7 +99,7 @@
   left: 55%;
   top: 50%;
   transform: translate(-50%, -50%);
-  transition: 1s;
+  /* transition: 1s; */
 }
 
 .record-playbutton-blackBox-arrow-triangle {
@@ -109,14 +109,14 @@
   transform: translate(-50%, -50%) rotate(90deg);
   width: 0px;
   height: 0px;
-  border-bottom: calc(10px * 1.732) solid white;
+  border-bottom: calc(10px * 1.732) solid rgb(0, 0, 0);
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   transition: 1s;
 }
 
 .record-playbutton-container.active .record-playbutton-blackBox-arrow-triangle {
-  border-bottom: calc(7px * 1.732) solid white;
+  border-bottom: calc(7px * 1.732) solid black;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
 }
@@ -155,7 +155,7 @@
   border: none;
   transition: 0.2s;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 1);
 }
 .record-playbutton-container .record-playbutton-listBox {
   position: absolute;
@@ -165,17 +165,17 @@
   transform: translateY(calc(-50% - 10px));
   right: 15px;
   border: none;
-  transition: 0.2s;
+  transition: 0.5s;
   background-color: transparent;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(0, 0, 0, 1);
 }
 .record-playbutton-container .record-playbutton-shuffleBox:hover,
 .record-playbutton-container .record-playbutton-listBox:hover {
-  color: #f1caa5;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .record-playbutton-container.active .record-playbutton-listBox {
-  color: #f1caa5;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
 }
 
 .record-playbutton-container .record-playbutton-listBox ion-icon,

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./RecordPlayButton.css";
-import arrowLeft from "../../../assets/icon/arrow-left-white.png";
-import arrowRight from "../../../assets/icon/arrow-right-white.png";
+import arrowLeft from "../../../assets/icon/arrow-left.png";
+import arrowRight from "../../../assets/icon/arrow-right.png";
 function RecordPlayButton({ listToggleHandle, listSuffleHandle, playPrevHandle, playNextHandle, playingMusicHandle, }) {
     const [listToggle, setListToggle] = useState("");
     const [playToggle, setPlayToggle] = useState("stop");

@@ -10,7 +10,9 @@ interface Props {
   list: List[];
   theme: string;
 }
+
 function PlayList({ listToggle, list, listCount, theme }: Props): JSX.Element {
+  console.log(theme);
   return (
     <div className={`playlist-container ${listToggle} ${theme}`}>
       <div className="playlist-wrapper">

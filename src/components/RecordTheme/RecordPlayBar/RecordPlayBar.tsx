@@ -27,8 +27,8 @@ function RecordPlayBar({
   const playerRef = useRef<ReactPlayer | null>(null);
 
   const circularSliderValue = (e: any) => {
-    setPlayed(parseFloat(e.target.value));
-    playerRef.current!.seekTo(parseFloat(e.target.value));
+    setPlayed(parseFloat(e.target.value) * 0.01);
+    playerRef.current!.seekTo(parseFloat(e.target.value) * 0.01);
   };
 
   useEffect(() => {
@@ -40,6 +40,7 @@ function RecordPlayBar({
 
     setTime(timeGet);
   }, [played]);
+
   return (
     <div className={`record-playbar-container ${listToggle}`}>
       <div className="record-playbar-hidemusic">
@@ -57,12 +58,21 @@ function RecordPlayBar({
       </div>
       <div className="record-time-present">{time}</div>
       <div className="record-playBar">
+        <div className="record-playBar-wrapper">
+          <div className="record-playBar-rail"></div>
+          <div
+            className="record-playBar-track"
+            style={{
+              width: `${played * 100}%`,
+            }}
+          ></div>
+        </div>
         <input
           type="range"
           min={0}
-          max={0.9999}
+          max={100}
           step="any"
-          value={played}
+          value={played * 100}
           onChange={(e) => circularSliderValue(e)}
         />
       </div>

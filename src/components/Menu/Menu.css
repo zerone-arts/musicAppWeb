@@ -1,6 +1,6 @@
 .menu-container {
   position: absolute;
-  z-index: 100;
+  z-index: 999;
   width: 273px;
   height: 593px;
   left: 50%;
@@ -19,6 +19,9 @@
   background-color: black;
 }
 .menu-container.circle {
+  background-color: black;
+}
+.menu-container.record {
   background-color: black;
 }
 

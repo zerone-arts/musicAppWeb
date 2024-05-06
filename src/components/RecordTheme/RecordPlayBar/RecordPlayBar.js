@@ -7,8 +7,8 @@ function RecordPlayBar({ listToggle, list, listCount, playing, playNextMusicHand
     const [time, setTime] = useState("0:00");
     const playerRef = useRef(null);
     const circularSliderValue = (e) => {
-        setPlayed(parseFloat(e.target.value));
-        playerRef.current.seekTo(parseFloat(e.target.value));
+        setPlayed(parseFloat(e.target.value) * 0.01);
+        playerRef.current.seekTo(parseFloat(e.target.value) * 0.01);
     };
     useEffect(() => {
         let timeGet, min, sec;
@@ -23,7 +23,12 @@ function RecordPlayBar({ listToggle, list, listCount, playing, playNextMusicHand
             React.createElement(ReactPlayer, { width: 200, height: 100, url: list[listCount].url, onEnded: playNextMusicHandle, playing: theme === "record" ? playing : false, volume: 0.2, onProgress: ({ played }) => setPlayed(played), onDuration: (duration) => setDuration(duration), ref: playerRef })),
         React.createElement("div", { className: "record-time-present" }, time),
         React.createElement("div", { className: "record-playBar" },
-            React.createElement("input", { type: "range", min: 0, max: 0.9999, step: "any", value: played, onChange: (e) => circularSliderValue(e) })),
+            React.createElement("div", { className: "record-playBar-wrapper" },
+                React.createElement("div", { className: "record-playBar-rail" }),
+                React.createElement("div", { className: "record-playBar-track", style: {
+                        width: `${played * 100}%`,
+                    } })),
+            React.createElement("input", { type: "range", min: 0, max: 100, step: "any", value: played * 100, onChange: (e) => circularSliderValue(e) })),
         React.createElement("div", { className: "record-time-duration" }, list[listCount].time)));
 }
 export default RecordPlayBar;

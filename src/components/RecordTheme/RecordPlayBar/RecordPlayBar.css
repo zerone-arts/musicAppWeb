@@ -3,6 +3,12 @@
   width: 100%;
   height: 100%;
   font-family: "Poppins", sans-serif;
+  transition: 0.5s;
+  pointer-events: all;
+}
+.record-playbar-container.active {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .record-playbar-hidemusic {
@@ -23,7 +29,6 @@
   left: 50%;
   top: 63%;
   transform: translate(-50%, -50%);
-  border: 1px solid red;
 }
 .record-time-present {
   position: absolute;
@@ -32,7 +37,7 @@
   left: 15%;
   top: 63%;
   transform: translate(-50%, -50%);
-  border: 1px solid red;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,11 +52,55 @@
   left: 85%;
   top: 63%;
   transform: translate(-50%, -50%);
-  border: 1px solid red;
+
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 0.5s;
   font-weight: 500;
   font-size: 12px;
+}
+
+.record-playBar input {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 2px;
+  /* opacity: 0; */
+  -webkit-appearance: none;
+  background: transparent;
+  margin: 0;
+}
+.record-playBar input::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  -webkit-appearance: none;
+  background-color: black;
+  border-radius: 50%;
+}
+.record-playBar-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.record-playBar-rail {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  left: 50%;
+  top: 50%;
+
+  background-color: rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.record-playBar-track {
+  position: absolute;
+
+  height: 2px;
+  left: 0;
+  top: 50%;
+  background-color: black;
+  transform: translateY(-50%);
 }
