@@ -74,7 +74,7 @@ function Iphone({ setAppBg }) {
     const [listCount, setListCount] = useState(0);
     const [listToggle, setListToggle] = useState("");
     const [playing, setPlaying] = useState(false);
-    const [themeCount, setThemeCount] = useState(2);
+    const [themeCount, setThemeCount] = useState(0);
     const [themeArr, setThemeArr] = useState([
         "round",
         "circle",

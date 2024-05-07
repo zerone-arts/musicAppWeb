@@ -84,7 +84,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [listCount, setListCount] = useState<number>(0);
   const [listToggle, setListToggle] = useState<string>("");
   const [playing, setPlaying] = useState<boolean>(false);
-  const [themeCount, setThemeCount] = useState<number>(2);
+  const [themeCount, setThemeCount] = useState<number>(0);
   const [themeArr, setThemeArr] = useState<string[]>([
     "round",
     "circle",
