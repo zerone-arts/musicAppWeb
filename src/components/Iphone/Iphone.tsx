@@ -224,7 +224,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
           onMouseMove={themeSlideHandle}
         >
           <li className="iphone-wrapper-lists-list">
-            <RoundTheme
+            <RecordTheme
               list={list}
               listCount={listCount}
               listToggle={listToggle}
@@ -239,6 +239,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
               theme={themeArr[themeCount]}
             />
           </li>
+
           <li className="iphone-wrapper-lists-list">
             <CircleTheme
               list={list}
@@ -258,7 +259,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
             />
           </li>
           <li className="iphone-wrapper-lists-list">
-            <RecordTheme
+            <RoundTheme
               list={list}
               listCount={listCount}
               listToggle={listToggle}

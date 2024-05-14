@@ -206,6 +206,7 @@
   opacity: 0.8;
   transition: 0.5s;
   z-index: 999;
+  cursor: pointer;
 }
 .record-menuSelectBtn:hover {
   opacity: 1;

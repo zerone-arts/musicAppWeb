@@ -70,23 +70,23 @@
   transition: 0.7s;
 }
 
-.iphone-wrapper-lists.round {
+.iphone-wrapper-lists.record {
   left: 0;
 }
 .iphone-wrapper-lists.circle {
   left: -313.5px;
 }
-.iphone-wrapper-lists.record {
+.iphone-wrapper-lists.round {
   left: -627px;
 }
-.iphone-wrapper-lists.round.theme {
+.iphone-wrapper-lists.record.theme {
   transform-origin: 132px;
 }
 .iphone-wrapper-lists.circle.theme {
   transform: scale(0.7);
   transform-origin: center;
 }
-.iphone-wrapper-lists.record.theme {
+.iphone-wrapper-lists.round.theme {
   transform: scale(0.7);
   transform-origin: 762px;
 }
