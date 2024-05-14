@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/musicAppWeb/static/css/main.56a64195.css",
-    "main.js": "/musicAppWeb/static/js/main.df511960.js",
+    "main.css": "/musicAppWeb/static/css/main.3405ce47.css",
+    "main.js": "/musicAppWeb/static/js/main.55fa6703.js",
     "reactPlayerYouTube.js": "/musicAppWeb/static/js/reactPlayerYouTube.9f57d9d3.chunk.js",
     "reactPlayerSoundCloud.js": "/musicAppWeb/static/js/reactPlayerSoundCloud.40d9ee4b.chunk.js",
     "reactPlayerVimeo.js": "/musicAppWeb/static/js/reactPlayerVimeo.58cbaa97.chunk.js",
@@ -30,8 +30,8 @@
     "static/media/numberonefan.png": "/musicAppWeb/static/media/numberonefan.e570f52a7a8f09c840d2.png",
     "static/media/cd.png": "/musicAppWeb/static/media/cd.8854578ca822b9421f45.png",
     "index.html": "/musicAppWeb/index.html",
-    "main.56a64195.css.map": "/musicAppWeb/static/css/main.56a64195.css.map",
-    "main.df511960.js.map": "/musicAppWeb/static/js/main.df511960.js.map",
+    "main.3405ce47.css.map": "/musicAppWeb/static/css/main.3405ce47.css.map",
+    "main.55fa6703.js.map": "/musicAppWeb/static/js/main.55fa6703.js.map",
     "reactPlayerYouTube.9f57d9d3.chunk.js.map": "/musicAppWeb/static/js/reactPlayerYouTube.9f57d9d3.chunk.js.map",
     "reactPlayerSoundCloud.40d9ee4b.chunk.js.map": "/musicAppWeb/static/js/reactPlayerSoundCloud.40d9ee4b.chunk.js.map",
     "reactPlayerVimeo.58cbaa97.chunk.js.map": "/musicAppWeb/static/js/reactPlayerVimeo.58cbaa97.chunk.js.map",
@@ -49,7 +49,7 @@
     "453.0bd3775f.chunk.js.map": "/musicAppWeb/static/js/453.0bd3775f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.56a64195.css",
-    "static/js/main.df511960.js"
+    "static/css/main.3405ce47.css",
+    "static/js/main.55fa6703.js"
   ]
 }
