@@ -4,7 +4,7 @@
   height: 590px;
   background-color: rgb(239, 239, 239);
   border-radius: 40px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .menuSelectBtn {

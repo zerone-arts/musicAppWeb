@@ -9,10 +9,16 @@ interface Props {
   listCount: number;
   list: List[];
   theme: string;
+  listSelectHandle: (num: number) => void;
 }
 
-function PlayList({ listToggle, list, listCount, theme }: Props): JSX.Element {
-  console.log(theme);
+function PlayList({
+  listToggle,
+  list,
+  listCount,
+  theme,
+  listSelectHandle,
+}: Props): JSX.Element {
   return (
     <div className={`playlist-container ${listToggle} ${theme}`}>
       <div className="playlist-wrapper">
@@ -24,6 +30,7 @@ function PlayList({ listToggle, list, listCount, theme }: Props): JSX.Element {
                 className={`playlist-box-item ${
                   listCount === idx ? "playing" : ""
                 }`}
+                onClick={() => listSelectHandle(item.id - 1)}
               >
                 <p>
                   {item.title}

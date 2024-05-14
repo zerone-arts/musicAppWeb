@@ -76,9 +76,9 @@ function Iphone({ setAppBg }) {
     const [playing, setPlaying] = useState(false);
     const [themeCount, setThemeCount] = useState(0);
     const [themeArr, setThemeArr] = useState([
-        "round",
-        "circle",
         "record",
+        "circle",
+        "round",
     ]);
     const [menuSelect, setMenuSelect] = useState("");
     const [menuSelectList, setMenuSelectList] = useState("");
@@ -86,6 +86,9 @@ function Iphone({ setAppBg }) {
     const [mouseDownX, setMouseDownX] = useState(0);
     const [mouseSlideX, setMouseSlideX] = useState(0);
     const [mousePrevX, setMousePrevX] = useState(0);
+    const listSelectHandle = (count) => {
+        setListCount(count);
+    };
     const listToggleHandle = (value) => {
         listToggle === "" ? setListToggle("active") : setListToggle("");
     };
@@ -206,7 +209,7 @@ function Iphone({ setAppBg }) {
                 React.createElement("div", { className: "theme-guide-ball" }),
                 React.createElement("div", { className: "theme-guide-text" }, "Drag and Click"))),
         React.createElement(Dynamicisland, { playing: playing }),
-        React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount, theme: themeArr[themeCount] }),
+        React.createElement(PlayList, { listToggle: listToggle, list: list, listCount: listCount, theme: themeArr[themeCount], listSelectHandle: listSelectHandle }),
         React.createElement(HideMusic, { list: list, listCount: listCount, getTimeHandle: getTimeHandle })));
 }
 export default Iphone;

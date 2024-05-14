@@ -86,9 +86,9 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [playing, setPlaying] = useState<boolean>(false);
   const [themeCount, setThemeCount] = useState<number>(0);
   const [themeArr, setThemeArr] = useState<string[]>([
-    "round",
-    "circle",
     "record",
+    "circle",
+    "round",
   ]);
   const [menuSelect, setMenuSelect] = useState<string>("");
   const [menuSelectList, setMenuSelectList] = useState<string>("");
@@ -96,6 +96,10 @@ function Iphone({ setAppBg }: Props): JSX.Element {
   const [mouseDownX, setMouseDownX] = useState<number>(0);
   const [mouseSlideX, setMouseSlideX] = useState<number>(0);
   const [mousePrevX, setMousePrevX] = useState<number>(0);
+
+  const listSelectHandle = (count: number) => {
+    setListCount(count);
+  };
 
   const listToggleHandle = (value: string) => {
     listToggle === "" ? setListToggle("active") : setListToggle("");
@@ -289,6 +293,7 @@ function Iphone({ setAppBg }: Props): JSX.Element {
         list={list}
         listCount={listCount}
         theme={themeArr[themeCount]}
+        listSelectHandle={listSelectHandle}
       />
       <HideMusic
         list={list}

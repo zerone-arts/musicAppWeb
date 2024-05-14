@@ -2,12 +2,11 @@ import React from "react";
 import "./PlayList.css";
 import scrollIcon from "../../assets/icon/scoll.png";
 import scrollIconWhite from "../../assets/icon/scroll-white.png";
-function PlayList({ listToggle, list, listCount, theme }) {
-    console.log(theme);
+function PlayList({ listToggle, list, listCount, theme, listSelectHandle, }) {
     return (React.createElement("div", { className: `playlist-container ${listToggle} ${theme}` },
         React.createElement("div", { className: "playlist-wrapper" },
             React.createElement("ul", { className: "playlist-box" }, list.map((item, idx) => {
-                return (React.createElement("li", { key: item.id, className: `playlist-box-item ${listCount === idx ? "playing" : ""}` },
+                return (React.createElement("li", { key: item.id, className: `playlist-box-item ${listCount === idx ? "playing" : ""}`, onClick: () => listSelectHandle(item.id - 1) },
                     React.createElement("p", null,
                         item.title,
                         React.createElement("span", null, item.time)),
