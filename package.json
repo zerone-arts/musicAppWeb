@@ -1,6 +1,6 @@
 {
   "name": "ts-react-tutorial",
-  "homepage": "https://zerone-arts.github.io/musicAppWeb/",
+  "homepage": "https://zerone-musicappweb.vercel.app/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
